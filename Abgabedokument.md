@@ -5,7 +5,7 @@
 * Hanna Baecke - 	
 * Emma Gernecke -
 * Anna Krüger -	248125
-* Clara Schaeper -	
+* Clara Schaeper - 247985
 * Anne Suckert - 247949	
 	
 ### Skizziert knapp die Forschungsidee!
