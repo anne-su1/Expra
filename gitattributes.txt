@@ -1,0 +1,29 @@
+#################################################################
+# Einheitliche Zeilenenden: Alle Textdateien strikt als LF im Repo
+# (und auch beim Checkout). Verhindert CRLF-Diffs zwischen OS.
+#################################################################
+* text=auto eol=lf
+
+##############
+# Binärdateien
+##############
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.ico   binary
+*.pdf   binary
+*.wav   binary
+*.mp3   binary
+*.ogg   binary
+*.mp4   binary
+*.avi   binary
+*.mov   binary
+*.zip   binary
+*.gz    binary
+*.bz2   binary
+*.xz    binary
+*.7z    binary
+*.psydat binary
+*.hdf5  binary
+*.pkl   binary
