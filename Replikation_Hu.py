@@ -5,6 +5,7 @@ from psychopy import core, visual, gui, event   # core: basisfkt (timing), visua
 import random                                   # ähnlich numpy.random.shuffle
 import time                                     # kann, muss aber nicht verwendet werden
 
+from task_model.task_grid import task_grid
 
 supervisor_input = gui.Dlg(title="Participant Data", pos=(0, 0))
 supervisor_input.addField("sub_id")
@@ -49,13 +50,12 @@ file_path = output_path + f'/sub-{sub_id}_task-catshumans.tsv' # TO DO: change t
 # window specific to our hardware
 win = visual.Window(                    # Psychopy benutzt in visual, window als fkt von visual
     color='black',                      # Hintergrundfarbe (auch rgb mgl)
-    size=[2000, 1000],                    # Anzahl Pixel (Größe Pixel)
     fullscr=True,
     useRetina=True)                     # wichitg für Mac, da angegebene Bidschrikmgröße ncht tatsächliche 
 
 # start introduction
 text_stim_1 = visual.TextStim(win,
-                              height=0.085)                              # text stimuli win aus Zeile 15
+                              height=0.085)                              # text stimuli_grid win aus Zeile 15
 text_stim_1.setText('''Willkommen zu unserem Experiment! 
                     \n\n\n In diesem Experiment sollen Sie die Buchstaben "E" unter den "F" suchen und zählen.
                     \n Diese Buchstaben werden auch gedreht und gespiegelt angezeigt. 
@@ -67,7 +67,7 @@ event.waitKeys(keyList=['space'])
 
 #second part introduction
 text_stim_2 = visual.TextStim(win,
-                              height=0.085)                              # text stimuli win aus Zeile 15
+                              height=0.085)                              # text stimuli_grid win aus Zeile 15
 text_stim_2.setText('''Willkommen zu unserem Experiment! 
                     \n\n\n In diesem Experiment sollen Sie die Buchstaben "E" unter den "F" suchen und zählen.
                     \n Diese Buchstaben werden auch gedreht und gespiegelt angezeigt. 
@@ -76,3 +76,44 @@ text_stim_2.setText('''Willkommen zu unserem Experiment!
 text_stim_2.draw()                                              # zusagmmengefügt, zeig bitte an
 win.flip()                                                      # Fenster wird aktualisiert
 event.waitKeys(keyList=['space']) 
+
+# Grid Test
+grid_rows = 8
+grid_cols = 16
+cell_width = 0.12
+cell_height = 0.12
+
+tg = task_grid(grid_rows, grid_cols)
+rnd = random.Random(42)
+tg.generate_experiment_task(rnd)
+#print(tg.display())
+
+grid_width = grid_cols * cell_width
+grid_height = grid_rows * cell_height
+
+stimuli_grid = []
+
+for row in range(grid_rows):
+    for col in range(grid_cols):
+        letter_data = tg.grid[row][col]
+
+        x = (col + 0.5) * cell_width - grid_width/2
+        y = grid_height/2 - (row + 0.5) * cell_height
+
+        stim = visual.TextStim(
+            win,
+            text = letter_data.value,
+            height = 0.1,
+            pos = (x, y),
+            ori = letter_data.rotation_angle,
+            color = "white",
+            flipHoriz = letter_data.isMirrored
+        )
+        stimuli_grid.append(stim)
+
+for stim in stimuli_grid:
+    stim.draw()
+
+win.flip()
+event.waitKeys(keyList=["space"])
+
