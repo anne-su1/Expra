@@ -87,13 +87,39 @@ text_stim_3.draw()                                              # zusagmmengefü
 win.flip()                                                      # Fenster wird aktualisiert
 event.waitKeys(maxWait= 20.0, keyList=['space']) 
 
-# phase 1
+# function e1
+global_duration = 240
+global_timer = core.CountdownTimer(global_duration)
+
+while global_timer.getTime() > 0:
+
+
+    
+
+# function e2
+
+
+# function e3
+
+
+# function e4
+
+
+# function e5
+
+
+# function e6
+
+
+
+# main experiment phase 1
+
 
 
 
 
 # questionnaire phase 1
-win.close()
+    win.close()
 supervisor_input = gui.Dlg(title="fatigue questionnaire")
 supervisor_input.addText("1 = niedrigstes Level an Erschöpfung, 5 = höchstes Level an Erschöpfung")
 supervisor_input.addField("Erschöpfungslevel nach Block 1", choices=["1", "2", "3", "4", "5"])
@@ -128,7 +154,7 @@ text_stim_5.draw()                                              # zusagmmengefü
 win.flip()                                                      # Fenster wird aktualisiert
 event.waitKeys(maxWait= 20.0, keyList=['space'])  
 
-# phase 2
+# main experiment phase 2
 
 
 
