@@ -14,6 +14,9 @@ supervisor_input.addField("normal or corrected sight", choices=["yes", "no"])
 supervisor_input.addField("handedness", choices=["right", "left"])
 supervisor_input.show()
 
+sub_data = supervisor_input.data
+sub_id = sub_data[0]
+
 # create a folder and a dataframe to store the output
 output_path = os.getcwd() + f'/sub-{sub_id}'
 if not os.path.exists(output_path):         # wenn Pfad nicht existiert, mache diesen ordner (makedirs)
@@ -46,6 +49,30 @@ file_path = output_path + f'/sub-{sub_id}_task-catshumans.tsv' # TO DO: change t
 # window specific to our hardware
 win = visual.Window(                    # Psychopy benutzt in visual, window als fkt von visual
     color='black',                      # Hintergrundfarbe (auch rgb mgl)
-    size=[400, 400],                    # Anzahl Pixel (Größe Pixel)
+    size=[2000, 1000],                    # Anzahl Pixel (Größe Pixel)
     fullscr=True,
     useRetina=True)                     # wichitg für Mac, da angegebene Bidschrikmgröße ncht tatsächliche 
+
+# start introduction
+text_stim_1 = visual.TextStim(win,
+                              height=0.085)                              # text stimuli win aus Zeile 15
+text_stim_1.setText('''Willkommen zu unserem Experiment! 
+                    \n\n\n In diesem Experiment sollen Sie die Buchstaben "E" unter den "F" suchen und zählen.
+                    \n Diese Buchstaben werden auch gedreht und gespiegelt angezeigt. 
+                    \n In jedem Durchgang verändert sich die Anzahl der "E's".
+                    \n Zum Fortfahren bitte die Leertaste drücken.''')        # Funktion die setTxt heißt
+text_stim_1.draw()                                              # zusagmmengefügt, zeig bitte an
+win.flip()                                                      # Fenster wird aktualisiert
+event.waitKeys(keyList=['space'])     
+
+#second part introduction
+text_stim_2 = visual.TextStim(win,
+                              height=0.085)                              # text stimuli win aus Zeile 15
+text_stim_2.setText('''Willkommen zu unserem Experiment! 
+                    \n\n\n In diesem Experiment sollen Sie die Buchstaben "E" unter den "F" suchen und zählen.
+                    \n Diese Buchstaben werden auch gedreht und gespiegelt angezeigt. 
+                    \n In jedem Durchgang verändert sich die Anzahl der "E's".
+                    \n Zum Fortfahren bitte die Leertaste drücken.''')        # Funktion die setTxt heißt
+text_stim_2.draw()                                              # zusagmmengefügt, zeig bitte an
+win.flip()                                                      # Fenster wird aktualisiert
+event.waitKeys(keyList=['space']) 
