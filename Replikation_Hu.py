@@ -6,7 +6,7 @@ import random                                   # ähnlich numpy.random.shuffle
 import time                                     # kann, muss aber nicht verwendet werden
 
 
-supervisor_input = gui.Dlg(title="Participant Data", pos=(0, 0))
+supervisor_input = gui.Dlg(title="Participant Data")
 supervisor_input.addField("sub_id")
 supervisor_input.addField("age")
 supervisor_input.addField("sex", choices=["male", "female"])
@@ -48,31 +48,111 @@ file_path = output_path + f'/sub-{sub_id}_task-catshumans.tsv' # TO DO: change t
 
 # window specific to our hardware
 win = visual.Window(                    # Psychopy benutzt in visual, window als fkt von visual
-    color='black',                      # Hintergrundfarbe (auch rgb mgl)
+    color='grey',                      # Hintergrundfarbe (auch rgb mgl)
     size=[2000, 1000],                    # Anzahl Pixel (Größe Pixel)
     fullscr=True,
     useRetina=True)                     # wichitg für Mac, da angegebene Bidschrikmgröße ncht tatsächliche 
 
-# start introduction
+# introduction phase 1
 text_stim_1 = visual.TextStim(win,
                               height=0.085)                              # text stimuli win aus Zeile 15
 text_stim_1.setText('''Willkommen zu unserem Experiment! 
-                    \n\n\n In diesem Experiment sollen Sie die Buchstaben "E" unter den "F" suchen und zählen.
+                    \n\n In diesem Experiment sollen Sie die Buchstaben "E" unter den "F" suchen und zählen.
                     \n Diese Buchstaben werden auch gedreht und gespiegelt angezeigt. 
-                    \n In jedem Durchgang verändert sich die Anzahl der "E's".
-                    \n Zum Fortfahren bitte die Leertaste drücken.''')        # Funktion die setTxt heißt
+                    \n In jedem Durchgang verändert sich die Anzahl der "E's". Zählen Sie, wie viele "E's" enthalten sind und geben Sie die entsprechende Zahl ein. Danach drücken Sie die Leertaste, um zur nächsten Aufgabe zu gelangen.
+                    \n\n Zum Fortfahren bitte die Leertaste drücken.''')        # Funktion die setTxt heißt
 text_stim_1.draw()                                              # zusagmmengefügt, zeig bitte an
 win.flip()                                                      # Fenster wird aktualisiert
-event.waitKeys(keyList=['space'])     
+event.waitKeys(maxWait= 20.0, keyList=['space'])     
 
-#second part introduction
+
 text_stim_2 = visual.TextStim(win,
                               height=0.085)                              # text stimuli win aus Zeile 15
-text_stim_2.setText('''Willkommen zu unserem Experiment! 
-                    \n\n\n In diesem Experiment sollen Sie die Buchstaben "E" unter den "F" suchen und zählen.
-                    \n Diese Buchstaben werden auch gedreht und gespiegelt angezeigt. 
-                    \n In jedem Durchgang verändert sich die Anzahl der "E's".
-                    \n Zum Fortfahren bitte die Leertaste drücken.''')        # Funktion die setTxt heißt
+text_stim_2.setText('''Es gibt 2 Phasen mit je 3 separaten Blöcken. 
+                    \n Stellen Sie sich vor, dass Sie in einer Notsituation sind, in der es auf Schnelligkeit und Genauigkeit ankommt. 
+                    \n Versuchen Sie also in jedem Durchgang die Suchaufgabe so schnell und so genau wie möglich durchzuführen.
+                    \n Nach jedem Block können Sie eine kleine Pause machen.
+                    \n\n\n Zum Fortfahren bitte die Leertaste drücken.''')        # Funktion die setTxt heißt
 text_stim_2.draw()                                              # zusagmmengefügt, zeig bitte an
 win.flip()                                                      # Fenster wird aktualisiert
-event.waitKeys(keyList=['space']) 
+event.waitKeys(maxWait= 20.0, keyList=['space']) 
+
+
+text_stim_3 = visual.TextStim(win,
+                              height=0.085)                              # text stimuli win aus Zeile 15
+text_stim_3.setText('''Wir starten jetzt mit Phase 1. 
+                    \n Phase 1 besteht aus 3 Blöcken. Vor jedem der Blöcke absolvieren Sie 3 Übungsdurchgänge. Nach jedem Block haben Sie 2 Minuten Pause.
+                    \n\n\n Zum Starten des Experiments bitte die Leertaste drücken.''')        # Funktion die setTxt heißt
+text_stim_3.draw()                                              # zusagmmengefügt, zeig bitte an
+win.flip()                                                      # Fenster wird aktualisiert
+event.waitKeys(maxWait= 20.0, keyList=['space']) 
+
+# phase 1
+
+
+
+
+# questionnaire phase 1
+win.close()
+supervisor_input = gui.Dlg(title="fatigue questionnaire")
+supervisor_input.addText("1 = niedrigstes Level an Erschöpfung, 5 = höchstes Level an Erschöpfung")
+supervisor_input.addField("Erschöpfungslevel nach Block 1", choices=["1", "2", "3", "4", "5"])
+supervisor_input.addField("Erschöpfungslevel nach Block 2", choices=["1", "2", "3", "4", "5"])
+supervisor_input.addField("Erschöpfungslevel nach Block 3", choices=["1", "2", "3", "4", "5"])
+supervisor_input.addField("Haben Sie die Zeitangaben bemerkt?", choices=["bemerkt und häufig nachgesehen", "bemerkt und manchmal nachgesehen", "nicht bemerkt"])
+supervisor_input.show()
+
+win = visual.Window(                    # Psychopy benutzt in visual, window als fkt von visual
+    color='grey',                      # Hintergrundfarbe (auch rgb mgl)
+    size=[2000, 1000],                    # Anzahl Pixel (Größe Pixel)
+    fullscr=True,
+    useRetina=True)                     # wichitg für Mac, da angegebene Bidschrikmgröße ncht tatsächliche 
+
+# introduction phase 2
+text_stim_4 = visual.TextStim(win,
+                              height=0.085)                              # text stimuli win aus Zeile 15
+text_stim_4.setText('''Jetzt beginnt Phase 2.
+                    \n Phase 2 besteht ebenso aus 3 Blöcken. Auch hier gibt es vor jedem Block 3 Übungsdurchgänge. Zwischen den Blöcken haben Sie 2 Minuten Pause.
+                    \n Behalten Sie die selbe Suchstrategie bei, wie bisher.
+                    \n\n Zum Fortfahren bitte die Leertaste drücken.''')        # Funktion die setTxt heißt
+text_stim_4.draw()                                              # zusagmmengefügt, zeig bitte an
+win.flip()                                                      # Fenster wird aktualisiert
+event.waitKeys(maxWait= 20.0, keyList=['space'])   
+
+text_stim_5 = visual.TextStim(win,
+                              height=0.085)                              # text stimuli win aus Zeile 15
+text_stim_5.setText('''In jedem Durchgang werden Sie einen Countdown-Timer sehen, der anzeigt in welcher Zeit Sie die Suchaufgabe bearbeiten müssen.
+                    \n Wenn der Countdown abgelaufen ist verschwinden die Buchstaben. Geben Sie bitte trotzdem eine Zahl ein und drücken die Leertaste, um zur nächsten Aufgabe zu gelangen.
+                    \n\n Zum Starten des Experiments bitte die Leertaste drücken.''')        # Funktion die setTxt heißt
+text_stim_5.draw()                                              # zusagmmengefügt, zeig bitte an
+win.flip()                                                      # Fenster wird aktualisiert
+event.waitKeys(maxWait= 20.0, keyList=['space'])  
+
+# phase 2
+
+
+
+# questionnaire phase 2
+win.close()
+supervisor_input = gui.Dlg(title="fatigue questionnaire")
+supervisor_input.addText("1 = niedrigstes Level an Erschöpfung, 5 = höchstes Level an Erschöpfung")
+supervisor_input.addField("Erschöpfungslevel nach Block 4", choices=["1", "2", "3", "4", "5"])
+supervisor_input.addField("Erschöpfungslevel nach Block 5", choices=["1", "2", "3", "4", "5"])
+supervisor_input.addField("Erschöpfungslevel nach Block 6", choices=["1", "2", "3", "4", "5"])
+supervisor_input.addField("Haben Sie die Zeitangaben bemerkt?", choices=["bemerkt und häufig nachgesehen", "bemerkt und manchmal nachgesehen", "nicht bemerkt"])
+supervisor_input.show()
+
+win = visual.Window(                    # Psychopy benutzt in visual, window als fkt von visual
+    color='grey',                      # Hintergrundfarbe (auch rgb mgl)
+    size=[2000, 1000],                    # Anzahl Pixel (Größe Pixel)
+    fullscr=True,
+    useRetina=True)                     # wichitg für Mac, da angegebene Bidschrikmgröße ncht tatsächliche 
+
+# the end
+text_stim_6 = visual.TextStim(win,
+                              height=0.085)                              # text stimuli win aus Zeile 15
+text_stim_6.setText('''Das Experiment ist jetzt beendet.
+                    \n\n Vielen Dank für Ihre Teilnahme!''')        # Funktion die setTxt heißt
+text_stim_6.draw()                                              # zusagmmengefügt, zeig bitte an
+win.flip()                                                      # Fenster wird aktualisiert
+event.waitKeys(maxWait= 20.0, keyList=['space']) 
