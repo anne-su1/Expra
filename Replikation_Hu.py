@@ -5,7 +5,7 @@ from psychopy import core, visual, gui, event   # core: basisfkt (timing), visua
 import random                                   # ähnlich numpy.random.shuffle
 import time                                     # kann, muss aber nicht verwendet werden
 
-from task_model.task_grid import task_grid
+from task_model.task_grid import Task_grid
 
 supervisor_input = gui.Dlg(title="Participant Data")
 supervisor_input.addField("sub_id")
@@ -31,7 +31,9 @@ behav_data = pd.DataFrame({'sub_id' : [],               # dictionary nur dann ve
                             'block' : [],
                             'trial' : [],
                             'reaction_time' : [],
-                            'key_pressed' : []
+                            'key_pressed' : [],
+                            'E_counter' : [],
+                            'corr_key_pressed' : []
                             })
 
 quest_data = pd.DataFrame({'sub_id' : [],               # dictionary nur dann verwenden bzw verändern wenn wirklich nötig 
@@ -65,7 +67,7 @@ text_stim_1.setText('''Willkommen zu unserem Experiment!
 text_stim_1.draw()                                              # zusagmmengefügt, zeig bitte an
 win.flip()                                                      # Fenster wird aktualisiert
 event.waitKeys(maxWait= 20.0, keyList=['space'])     
-
+event.getKeys()
 
 text_stim_2 = visual.TextStim(win,
                               height=0.085)                              # text stimuli win aus Zeile 15
@@ -190,10 +192,11 @@ grid_cols = 16
 cell_width = 0.12
 cell_height = 0.12
 
-tg = task_grid(grid_rows, grid_cols)
 rnd = random.Random(42)
-tg.generate_experiment_task(rnd)
-#print(tg.display())
+
+taskGrid = Task_grid(grid_rows, grid_cols, rnd)
+taskGrid.generate_experiment_task()
+print(taskGrid.display())
 
 grid_width = grid_cols * cell_width
 grid_height = grid_rows * cell_height
@@ -202,14 +205,14 @@ stimuli_grid = []
 
 for row in range(grid_rows):
     for col in range(grid_cols):
-        letter_data = tg.grid[row][col]
+        letter_data = taskGrid.grid[row][col]
 
         x = (col + 0.5) * cell_width - grid_width/2
         y = grid_height/2 - (row + 0.5) * cell_height
 
         stim = visual.TextStim(
             win,
-            text = letter_data.value,
+            text = letter_data.letter,
             height = 0.1,
             pos = (x, y),
             ori = letter_data.rotation_angle,
