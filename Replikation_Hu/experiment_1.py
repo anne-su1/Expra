@@ -1,5 +1,4 @@
 from task_model.task_grid import Task_grid
-from Replikation_Hu import behav_data
 from psychopy import core, visual, event 
 
 class E1:
@@ -27,13 +26,4 @@ class E1:
         for i in range(3):
             self.task.generate_experiment_task()
             self.task.draw(self.win)
-            keys = event.getKeys(maxWait=10)
-            for key in keys:
-                if key in ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']:
-                    response += key
-                    if len(response) == 2:
-                        behav_data.append('key_pressed', int(response))
-                        continueRoutine = False
-                elif key == 'backspace':
-                    response = response[:-1]
-
+            keys = event.waitKeys(maxWait = 10)
