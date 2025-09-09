@@ -22,9 +22,9 @@ def main():
         'block' : [],
         'trial' : [],
         'reaction_time' : [],
-        'key_pressed' : [],
+        'E_amount_answer' : [],
         'E_counter' : [],
-        'corr_key_pressed' : []
+        'corr_E_amount_answer' : []
     })
     
     quest_data = pd.DataFrame({
@@ -65,18 +65,18 @@ def main():
     # Phase 1
     instruction.instruction_for_phase_1()
     
-    win_timer = visual.Window(
-        color='red',                       # Hintergrundfarbe (auch rgb mgl)
-        size=[2000, 300],                  # Anzahl Pixel (Größe Pixel)
-        fullscr=False,
-        useRetina=True,
-    ) 
-    win_timer.flip()
+    #win_timer = visual.Window(
+    #    color='red',                       # Hintergrundfarbe (auch rgb mgl)
+    #    size=[2000, 300],                  # Anzahl Pixel (Größe Pixel)
+    #    fullscr=False,
+    #    useRetina=True,
+    #) 
+    #win_timer.flip()
 
     random = Random(42)
     taskGrid = Task_grid(8, 16, random)
 
-    e1 = E1(taskGrid, 240, win)
+    e1 = E1(taskGrid, 240, win, behav_data)
     e2 = E2(taskGrid, 240, win)
     e3 = E3(taskGrid, 240, win)
 
