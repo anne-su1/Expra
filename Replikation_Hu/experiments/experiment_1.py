@@ -17,7 +17,7 @@ class E1:
 
     def start(self):
         print("E1 gestartet")
-        
+
 
         #self.timer = core.CountdownTimer(self.experiment_duration)
         #while self.timer.getTime() > 0:
@@ -29,4 +29,5 @@ class E1:
         for i in range(3):
             self.task.generate_experiment_task()
             self.task.draw(self.win)
-            keys = event.waitKeys(maxWait = 10)
+            self.win.flip()
+            keys = event.waitKeys()

@@ -81,7 +81,7 @@ class Task_grid:
                     height = 0.1,
                     pos = (x, y),
                     ori = letter_data.rotation_angle,
-                    color = "white",
+                    color = "black",
                     flipHoriz = letter_data.isMirrored
                 )
                 stimuli_grid.append(stim)
@@ -89,7 +89,6 @@ class Task_grid:
         for stim in stimuli_grid:
             stim.draw()
 
-        win.flip()
 
     # Umwandlung Grid in String für Ausgabe  
     def display(self) -> str:

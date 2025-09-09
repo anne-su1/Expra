@@ -64,16 +64,8 @@ def main():
 
     # Phase 1
     instruction.instruction_for_phase_1()
-    
-    win_timer = visual.Window(
-        color='red',                       # Hintergrundfarbe (auch rgb mgl)
-        size=[2000, 300],                  # Anzahl Pixel (Größe Pixel)
-        fullscr=False,
-        useRetina=True,
-    ) 
-    win_timer.flip()
 
-    random = Random(42)
+    random = Random()
     taskGrid = Task_grid(8, 16, random)
 
     e1 = E1(taskGrid, 240, win)
@@ -89,35 +81,21 @@ def main():
 
     # ...
 
-    #win.close()
     # fatigue questionnare 1
 
     questionnaire.fatigue_questionnaire_1()
 
     # Phase 2
-    #win = visual.Window(                    # Psychopy benutzt in visual, window als fkt von visual
-    #    color='grey',                       # Hintergrundfarbe (auch rgb mgl)
-    #    size=[2000, 1000],                  # Anzahl Pixel (Größe Pixel)
-    #    #fullscr=False,
-    #    useRetina=True)
-    #instruction.update_instance_of_win(win)
 
     instruction.instruction_for_phase_2()
 
     # ...
 
-    #win.close()
     # fatigue questionnare 2
 
     questionnaire.fatigue_questionnaire_2()
 
     # Danke
-    #win = visual.Window(                    # Psychopy benutzt in visual, window als fkt von visual
-    #    color='grey',                       # Hintergrundfarbe (auch rgb mgl)
-    #    size=[2000, 1000],                  # Anzahl Pixel (Größe Pixel)
-    #    #fullscr=False,
-    #    useRetina=True)
-    #instruction.update_instance_of_win(win)
 
     instruction.say_goodbye()
 
