@@ -15,7 +15,10 @@ class E1:
         self.experiment_duration = duration
         self.win = win
 
-    #def start(self):
+    def start(self):
+        print("E1 gestartet")
+        
+
         #self.timer = core.CountdownTimer(self.experiment_duration)
         #while self.timer.getTime() > 0:
             #self.task.generate_experiment_task()

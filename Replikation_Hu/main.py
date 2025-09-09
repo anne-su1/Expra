@@ -1,14 +1,18 @@
 from psychopy import visual, core
 import pandas as pd
 from random import Random
+import os
 
 from task_model.task_grid import Task_grid
-from experiment_1 import E1
+from experiments.experiment_1 import E1
+from experiments.experiment_2 import E2
+from experiments.experiment_3 import E3
+
+
 from instruction import Instruction
 from questionnaires import Questionnaire
 
 def main():
-    
     behav_data = pd.DataFrame({
         'sub_id' : [],               # dictionary nur dann verwenden bzw verändern wenn wirklich nötig 
         'age' : [],                 # [] leere Liste
@@ -37,40 +41,85 @@ def main():
 
     questionnaire = Questionnaire(quest_data)
 
-    # Sub Datenabfrage
+    # Sub Datenabfrage und sub-Ordner Erstellung
     sub_info = questionnaire.sub_input()
 
     if sub_info is None:
         core.quit() 
-    
-    print(sub_info)
 
-    sub_folder_path = questionnaire.create_sub_data_folder(sub_info.get("sub_id"))
+    sub_folder_path = os.getcwd() + f'/sub-{sub_info.get("sub_id")}'
+    if not os.path.exists(sub_folder_path):         # wenn Pfad nicht existiert, mache diesen ordner (makedirs)
+        os.makedirs(sub_folder_path)                # if Statement nötig, wenn pfad nicht existiert, um nicht weiter um nicht zu überschreiben
     print(sub_folder_path)
 
+    # Begrüssung
     win = visual.Window(                    # Psychopy benutzt in visual, window als fkt von visual
         color='grey',                       # Hintergrundfarbe (auch rgb mgl)
-        size=[2000, 1000],                  # Anzahl Pixel (Größe Pixel)
-        fullscr=True,
+        size=[2000, 1100],                  # Anzahl Pixel (Größe Pixel)
+        fullscr=False,
         useRetina=True) 
-    
     instruction = Instruction(win)
 
-    # Begrüssung
     instruction.initalHellos()
 
     # Phase 1
+    instruction.instruction_for_phase_1()
+    
+    win_timer = visual.Window(
+        color='red',                       # Hintergrundfarbe (auch rgb mgl)
+        size=[2000, 300],                  # Anzahl Pixel (Größe Pixel)
+        fullscr=False,
+        useRetina=True,
+    ) 
+    win_timer.flip()
 
     random = Random(42)
     taskGrid = Task_grid(8, 16, random)
+
     e1 = E1(taskGrid, 240, win)
+    e2 = E2(taskGrid, 240, win)
+    e3 = E3(taskGrid, 240, win)
 
-    e1.practice()
+    phase_1_sequence = [e1, e2, e3]
+    random.shuffle(phase_1_sequence)
 
+    for experiment in phase_1_sequence:
+        experiment.practice()
+        experiment.start()
+
+    # ...
+
+    #win.close()
     # fatigue questionnare 1
+
+    questionnaire.fatigue_questionnaire_1()
+
     # Phase 2
+    #win = visual.Window(                    # Psychopy benutzt in visual, window als fkt von visual
+    #    color='grey',                       # Hintergrundfarbe (auch rgb mgl)
+    #    size=[2000, 1000],                  # Anzahl Pixel (Größe Pixel)
+    #    #fullscr=False,
+    #    useRetina=True)
+    #instruction.update_instance_of_win(win)
+
+    instruction.instruction_for_phase_2()
+
+    # ...
+
+    #win.close()
     # fatigue questionnare 2
+
+    questionnaire.fatigue_questionnaire_2()
+
     # Danke
+    #win = visual.Window(                    # Psychopy benutzt in visual, window als fkt von visual
+    #    color='grey',                       # Hintergrundfarbe (auch rgb mgl)
+    #    size=[2000, 1000],                  # Anzahl Pixel (Größe Pixel)
+    #    #fullscr=False,
+    #    useRetina=True)
+    #instruction.update_instance_of_win(win)
+
+    instruction.say_goodbye()
 
 
 if __name__ == "__main__":
