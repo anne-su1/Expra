@@ -21,17 +21,19 @@ class E1:
 
     def start(self):
         #print("E1 gestartet")
-        text_stim_e1 = visual.textStim(win,
+        text_stim_e1 = visual.TextStim(self.win,
                                        height=0.085)
-        text_stim_e1.setText('''Start Block 1
-                             \\n Zum Starten bitte die Leertaste drücken''')
+        text_stim_e1.setText(
+            '''Start Block 1
+            \n\n Zum Starten bitte die Leertaste drücken
+        ''')
         text_stim_e1.draw()
         self.win.flip()
         event.waitKeys(keyList=['space'])
 
         timer = core.Clock()
 
-        while timer < 240:
+        while timer.getTime() < 240:
             self.draw_fixation(self.win, (0., 0.))
 
             trial_start_time = timer.getTime()
