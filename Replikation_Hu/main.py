@@ -33,11 +33,11 @@ def main():
         'Q1E1' : [],                 # [] leere Liste
         'Q1E2' : [],                 # dataframe wird mit jedem versuchsdurchgang gefüllt
         'Q1E3' : [],
+        'Q2Phase1' : [],
         'Q1E4' : [],
         'Q1E5' : [],
         'Q1E6' : [],
-        'Q2Phase1' : [],
-        'Q2Phase2' : []
+        'Q2Phase2' : [],
     })
 
     questionnaire = Questionnaire(quest_data)
@@ -73,10 +73,10 @@ def main():
     taskGrid = Task_grid(8, 16, random)
 
     e1 = E1(taskGrid, 240, win, behav_data, sub_info, sub_folder_path)
-    #e2 = E2(taskGrid, 240, win)
-   # e3 = E3(taskGrid, 240, win)
+    #e2 = E2(taskGrid, 240, win, behav_data, sub_info, sub_folder_path)
+    #e3 = E3(taskGrid, 240, win)
 
-    phase_1_sequence = [e1] #, e2, #e3]
+    phase_1_sequence = [e1] #[e1, e2, e3]
    # random.shuffle(phase_1_sequence)
 
     for experiment in phase_1_sequence:

@@ -4,22 +4,27 @@ from psychopy import gui
 
 class Questionnaire:
 
-    questData: pd.DataFrame
+    quest_data: pd.DataFrame
+    sub_info: dict
+    sub_folder_path: str
 
-    def __init__(self, questDataFrame: pd.DataFrame):
-        self.questData = questDataFrame
+
+    def __init__(self, quest_data: pd.DataFrame, sub_info: dict, sub_folder_path: str):
+        self.quest_data = quest_data
+        self.sub_info = sub_info
+        self.sub_folder_path = sub_folder_path
 
     def sub_input(self) -> dict:
-        supervisor_input = gui.Dlg(title="Participant Data")
-        supervisor_input.addField("sub_id", initial="01")
-        supervisor_input.addField("age")
-        supervisor_input.addField("sex", choices=["male", "female"])
-        supervisor_input.addField("normal or corrected sight", choices=["normal", "corrected"])
-        supervisor_input.addField("handedness", choices=["right", "left"])
-        supervisor_input.show()
+        fat_quest_1 = gui.Dlg(title="Participant Data")
+        fat_quest_1.addField("sub_id", initial="01")
+        fat_quest_1.addField("age")
+        fat_quest_1.addField("sex", choices=["male", "female"])
+        fat_quest_1.addField("normal or corrected sight", choices=["normal", "corrected"])
+        fat_quest_1.addField("handedness", choices=["right", "left"])
+        fat_quest_1.show()
 
-        if supervisor_input.OK:
-            raw_data = supervisor_input.data
+        if fat_quest_1.OK:
+            raw_data = fat_quest_1.data
             sub_data = {
                 "sub_id": raw_data[0],
                 "age": int(raw_data[1]),
@@ -42,20 +47,41 @@ class Questionnaire:
         return file_path
     
     def fatigue_questionnaire_1(self):
-        supervisor_input = gui.Dlg(title="fatigue questionnaire")
-        supervisor_input.addText("1 = niedrigstes Level an Erschöpfung, 5 = höchstes Level an Erschöpfung")
-        supervisor_input.addField("Erschöpfungslevel nach Block 1", choices=["1", "2", "3", "4", "5"])
-        supervisor_input.addField("Erschöpfungslevel nach Block 2", choices=["1", "2", "3", "4", "5"])
-        supervisor_input.addField("Erschöpfungslevel nach Block 3", choices=["1", "2", "3", "4", "5"])
-        supervisor_input.addField("Haben Sie die Zeitangaben bemerkt?", choices=["bemerkt und häufig nachgesehen", "bemerkt und manchmal nachgesehen", "nicht bemerkt"])
-        supervisor_input.show()
+        fat_quest_1 = gui.Dlg(title="fatigue questionnaire")
+        fat_quest_1.addText("1 = niedrigstes Level an Erschöpfung, 5 = höchstes Level an Erschöpfung")
+        fat_quest_1.addField("Erschöpfungslevel nach Block 1", choices=["1", "2", "3", "4", "5"])
+        fat_quest_1.addField("Erschöpfungslevel nach Block 2", choices=["1", "2", "3", "4", "5"])
+        fat_quest_1.addField("Erschöpfungslevel nach Block 3", choices=["1", "2", "3", "4", "5"])
+        fat_quest_1.addField("Haben Sie die Zeitangaben bemerkt?", choices=["bemerkt und häufig nachgesehen", "bemerkt und manchmal nachgesehen", "nicht bemerkt"])
+        fat_quest_1.show()
+
+        quest_data_1 = pd.DataFrame({
+            'sub_id' : self.sub_info.get("sub_id"),
+            'Q1E1' : int(fat_quest_1[0]),
+            'Q1E2' : int(fat_quest_1[1]),
+            'Q1E3' : int(fat_quest_1[2]),
+            'Q2Phase1' : fat_quest_1[3]
+        })
+
+        self.quest_data = pd.concat([self.quest_data, quest_data_1], ignore_index=True)
 
 
     def fatigue_questionnaire_2(self):
-        supervisor_input = gui.Dlg(title="fatigue questionnaire")
-        supervisor_input.addText("1 = niedrigstes Level an Erschöpfung, 5 = höchstes Level an Erschöpfung")
-        supervisor_input.addField("Erschöpfungslevel nach Block 4", choices=["1", "2", "3", "4", "5"])
-        supervisor_input.addField("Erschöpfungslevel nach Block 5", choices=["1", "2", "3", "4", "5"])
-        supervisor_input.addField("Erschöpfungslevel nach Block 6", choices=["1", "2", "3", "4", "5"])
-        supervisor_input.addField("Haben Sie die Zeitangaben bemerkt?", choices=["bemerkt und häufig nachgesehen", "bemerkt und manchmal nachgesehen", "nicht bemerkt"])
-        supervisor_input.show()
+        fat_quest_2 = gui.Dlg(title="fatigue questionnaire")
+        fat_quest_2.addText("1 = niedrigstes Level an Erschöpfung, 5 = höchstes Level an Erschöpfung")
+        fat_quest_2.addField("Erschöpfungslevel nach Block 4", choices=["1", "2", "3", "4", "5"])
+        fat_quest_2.addField("Erschöpfungslevel nach Block 5", choices=["1", "2", "3", "4", "5"])
+        fat_quest_2.addField("Erschöpfungslevel nach Block 6", choices=["1", "2", "3", "4", "5"])
+        fat_quest_2.addField("Haben Sie die Zeitangaben bemerkt?", choices=["bemerkt und häufig nachgesehen", "bemerkt und manchmal nachgesehen", "nicht bemerkt"])
+        fat_quest_2.show()
+
+        quest_data_2 = pd.DataFrame({
+            'sub_id' : self.sub_info.get("sub_id"),
+            'Q1E4' : int(fat_quest_2[0]),
+            'Q1E5' : int(fat_quest_2[1]),
+            'Q1E6' : int(fat_quest_2[2]),
+            'Q2Phase2' : fat_quest_2[3]
+        })
+
+        self.quest_data = pd.concat([self.quest_data, quest_data_2], ignore_index=True)
+        self.quest_data.to_csv(self.sub_folder_path + f'/sub-{self.sub_info.get("sub_id")}_quest_data.csv')

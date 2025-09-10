@@ -26,7 +26,6 @@ class E1:
 
 
     def start(self):
-        #print("E1 gestartet")
         text_stim_e1 = visual.TextStim(self.win,
                                        height=0.085,
                                        color=self.color)
@@ -41,7 +40,7 @@ class E1:
         trial_counter = 0
         timer = core.Clock()
 
-        while timer.getTime() < 20:         #240
+        while timer.getTime() < self.experiment_duration:         # /10 ändern
             self.draw_fixation((0., 0.))
             trial_counter = trial_counter + 1
             self.task.generate_experiment_task()
