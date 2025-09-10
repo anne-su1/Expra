@@ -51,7 +51,6 @@ def main():
     sub_folder_path = os.getcwd() + f'/sub-{sub_info.get("sub_id")}'
     if not os.path.exists(sub_folder_path):         # wenn Pfad nicht existiert, mache diesen ordner (makedirs)
         os.makedirs(sub_folder_path)                # if Statement nötig, wenn pfad nicht existiert, um nicht weiter um nicht zu überschreiben
-    print(sub_folder_path)
 
     # Begrüssung
     display = pyglet.canvas.get_display()

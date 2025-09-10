@@ -25,9 +25,9 @@ class E3:
         text = visual.TextStim(
             self.win,
             text="0:00",
-            pos=(0, 0.9),
-            height=0.05,
-            color="white"
+            pos=(0, 0.85),
+            height=0.07,
+            color=self.color
         )
 
         text_stim_e3 = visual.TextStim(self.win,
@@ -43,9 +43,9 @@ class E3:
     
         trial_counter = 0
         timer = core.CountdownTimer(self.experiment_duration + 1)
-
         while timer.getTime() > 0:
             self.draw_fixation((0., 0.))
+
             trial_counter = trial_counter + 1
             self.task.generate_experiment_task()
             self.task.draw(self.win)
@@ -96,8 +96,7 @@ class E3:
             self.behav_data = pd.concat([self.behav_data, pd.DataFrame([trial_data])], ignore_index=True)
             self.behav_data.to_csv(self.sub_folder_path + f'/sub-{self.sub_info.get("sub_id")}_behav_data.csv')
 
-        text_stim_e3.setText(
-                '''Sie haben Block 3 geschafft!''')
+        text_stim_e3.setText('Sie haben Block 3 geschafft!')
         text_stim_e3.draw()
         self.win.flip()
         core.wait(5)
