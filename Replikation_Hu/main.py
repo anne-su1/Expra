@@ -1,4 +1,5 @@
-from psychopy import visual, core
+from psychopy import visual, core, monitors
+import pyglet
 import pandas as pd
 from random import Random
 import os
@@ -53,9 +54,12 @@ def main():
     print(sub_folder_path)
 
     # Begrüssung
+    display = pyglet.canvas.get_display()
+    screen = display.get_default_screen()
+    width, height = screen.width, screen.height
     win = visual.Window(                    # Psychopy benutzt in visual, window als fkt von visual
         color='grey',                       # Hintergrundfarbe (auch rgb mgl)
-        size=[1750, 1100],                  # Anzahl Pixel (Größe Pixel)
+        size=[width, height],                  # Anzahl Pixel (Größe Pixel)
         fullscr=False,
         useRetina=True) 
     instruction = Instruction(win)
