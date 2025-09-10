@@ -71,12 +71,12 @@ def main():
     random = Random()
     taskGrid = Task_grid(8, 16, random)
 
-    e1 = E1(taskGrid, 240, win, behav_data, sub_info, sub_folder_path)
-    e2 = E2(taskGrid, 240, win)
-    e3 = E3(taskGrid, 240, win, behav_data, sub_info, sub_folder_path)
+    e1 = E1(taskGrid, 24, win, behav_data, sub_info, sub_folder_path)
+    e2 = E2(taskGrid, 24, win, behav_data, sub_info, sub_folder_path)
+    e3 = E3(taskGrid, 24, win, behav_data, sub_info, sub_folder_path)
 
-    phase_1_sequence = [e3] #[e1, e2, e3] 
-   # random.shuffle(phase_1_sequence)
+    phase_1_sequence = [e1, e2, e3] 
+    random.shuffle(phase_1_sequence)
 
     for experiment in phase_1_sequence:
         experiment.practice()

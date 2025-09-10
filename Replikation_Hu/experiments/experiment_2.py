@@ -16,18 +16,18 @@ class E2:
         self.task = taskGrid
         self.experiment_duration = duration
         self.win = win
-        self.behav_data: pd.DataFrame
-        self.sub_info: dict 
-        self.sub_folder_path: str
+        self.behav_data = behav_data
+        self.sub_info = sub_info
+        self.sub_folder_path = sub_folder_path
        
     
     def start(self):
         text = visual.TextStim(
             self.win,
             text="0:00",
-            pos=(0, 0.9),
-            height=0.05,
-            color="white"
+            pos=(0, 0.85),
+            height=0.07,
+            color=self.color
         )
 
         text_stim_e2 = visual.TextStim(self.win,
@@ -43,42 +43,42 @@ class E2:
 
         trial_counter = 0
         timer = core.Clock()
+        while timer.getTime() < self.experiment_duration:
+            self.draw_fixation((0., 0.))
 
-        while timer.getTime() < 240:
+            trial_counter = trial_counter + 1
+            self.task.generate_experiment_task()
             self.task.draw(self.win)
 
             elapsed = timer.getTime()
             mins = int(elapsed // 60)
             secs = int(elapsed % 60)
             time_str = f"{mins:02d}:{secs:02d}"
-
             text.setText(time_str)
             text.draw()
-
-            self.win.flip()
-
-            keys = event.getKeys()
-            if keys:
-                break
-
-        while timer.getTime() < self.experiment_duration / 10:       # /10 weg  
-            self.draw_fixation((0., 0.))
-            trial_counter = trial_counter + 1
-            self.task.generate_experiment_task()
-
-            self.task.draw(self.win)
+        
             self.win.flip()
            
             trial_start_time = timer.getTime()
-        
-            while timer.getTime() < 240:
+            trial_reaction_time = float("NaN")
+            while timer.getTime() < self.experiment_duration:
                 keys = event.getKeys(keyList='space')
                 if keys:
                     trial_reaction_time = timer.getTime() - trial_start_time
-                    self.win.flip()
                     break
 
+                self.task.draw(self.win)
 
+                elapsed = timer.getTime()
+                mins = int(elapsed // 60)
+                secs = int(elapsed % 60)
+                time_str = f"{mins:02d}:{secs:02d}"
+                text.setText(time_str)
+                text.draw()
+        
+                self.win.flip()
+
+            self.win.flip()
             trial_answer = gui.Dlg(title = "Trial Answer")
             trial_answer.addField("Wie viele 'E's' waren auf dem Display zu sehen?")
             trial_answer.show()
@@ -94,7 +94,8 @@ class E2:
             }
             
             self.behav_data = pd.concat([self.behav_data, pd.DataFrame([trial_data])], ignore_index=True)
-            self.behav_data.to_csv(self.sub_folder_path + f'/sub-{self.sub_info.get("sub_id")}_behav_data.csv')
+        
+        self.behav_data.to_csv(self.sub_folder_path + f'/sub-{self.sub_info.get("sub_id")}_behav_data.csv', mode='a')
 
         text_stim_e2.setText(
                 '''Sie haben Block 2 geschafft!''')
@@ -105,29 +106,34 @@ class E2:
 
 
     def practice(self):
-        timer = core.Clock()
+        text_stim_e2 = visual.TextStim(self.win,
+                                       height=0.085,
+                                       color=self.color)
+        text_stim_e2.setText(
+            '''Sie beginnen nun mit 3 Übungsaufgaben für Block 2.
+            \n Bitte zählen Sie die vorhandenen E's und drücken Sie danach auf die Leertaste.
+            \n Es öffnet sich ein Fenster in dem Sie bitte die Anzahl der gezählten E's eintragen und mit "OK" bestätigen.
+            \n\n Zum Starten bitte die Leertaste drücken.
+            ''')
+        text_stim_e2.draw()
+        self.win.flip()
+        event.waitKeys(keyList='space')
 
         for i in range(3):
+            self.draw_fixation((0.0, 0.0))
             self.task.generate_experiment_task()
+            self.task.draw(self.win)
+            self.win.flip()
             
-            event.clearEvents()
-            keys = None
-            while timer.getTime() < 240:
-                self.task.draw(self.win)
-
-                elapsed = timer.getTime()
-                mins = int(elapsed // 60)
-                secs = int(elapsed % 60)
-                time_str = f"{mins:02d}:{secs:02d}"
-
-                text.setText(time_str)
-                text.draw()
-
-                self.win.flip()
-
-                keys = event.getKeys()
+            while True:
+                keys = event.getKeys(keyList='space')
                 if keys:
+                    self.win.flip()
                     break
+
+            trial_answer = gui.Dlg(title = "Trial Answer")
+            trial_answer.addField("Wie viele 'E's' waren auf dem Display zu sehen?")
+            trial_answer.show()
 
 
     def draw_fixation(self, fixation_position):

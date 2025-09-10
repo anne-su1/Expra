@@ -69,7 +69,8 @@ class E1:
             }
             
             self.behav_data = pd.concat([self.behav_data, pd.DataFrame([trial_data])], ignore_index=True)
-            self.behav_data.to_csv(self.sub_folder_path + f'/sub-{self.sub_info.get("sub_id")}_behav_data.csv')
+        
+        self.behav_data.to_csv(self.sub_folder_path + f'/sub-{self.sub_info.get("sub_id")}_behav_data.csv', mode='a')
 
         text_stim_e1.setText(
                 '''Sie haben Block 1 geschafft!''')

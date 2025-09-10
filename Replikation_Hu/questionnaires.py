@@ -9,10 +9,8 @@ class Questionnaire:
     sub_folder_path: str
 
 
-    def __init__(self, quest_data: pd.DataFrame, sub_info: dict, sub_folder_path: str):
+    def __init__(self, quest_data: pd.DataFrame):
         self.quest_data = quest_data
-        self.sub_info = sub_info
-        self.sub_folder_path = sub_folder_path
 
     def sub_input(self) -> dict:
         fat_quest_1 = gui.Dlg(title="Participant Data")
