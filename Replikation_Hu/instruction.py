@@ -35,6 +35,15 @@ class Instruction:
         self.win.flip()                                                      # Fenster wird aktualisiert
         event.waitKeys(keyList=['space']) 
 
+        text_stim_3 = visual.TextStim(self.win, height=0.085, color= self.color)                              # text stimuli self.win aus Zeile 15
+        text_stim_3.setText(
+            '''Nach jeder Phase werden Sie zu Ihrem subjektiven Erschöpfungslevel befragt.
+            \n\n\n Zum Fortfahren bitte die Leertaste drücken.
+        ''')        # Funktion die setTxt heißt
+        text_stim_3.draw()                                              # zusagmmengefügt, zeig bitte an
+        self.win.flip()                                                      # Fenster wird aktualisiert
+        event.waitKeys(keyList=['space']) 
+
     def instruction_for_phase_1(self):
         text_stim = visual.TextStim(self.win, height=0.085, color= self.color)                              # text stimuli self.win aus Zeile 15
         text_stim.setText(
