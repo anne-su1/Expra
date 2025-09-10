@@ -52,6 +52,8 @@ def main():
     if not os.path.exists(sub_folder_path):         # wenn Pfad nicht existiert, mache diesen ordner (makedirs)
         os.makedirs(sub_folder_path)                # if Statement nötig, wenn pfad nicht existiert, um nicht weiter um nicht zu überschreiben
 
+    questionnaire.sub_folder_path = sub_folder_path
+    
     # Begrüssung
     display = pyglet.canvas.get_display()
     screen = display.get_default_screen()
@@ -71,9 +73,9 @@ def main():
     random = Random()
     taskGrid = Task_grid(8, 16, random)
 
-    e1 = E1(taskGrid, 24, win, behav_data, sub_info, sub_folder_path)
-    e2 = E2(taskGrid, 24, win, behav_data, sub_info, sub_folder_path)
-    e3 = E3(taskGrid, 24, win, behav_data, sub_info, sub_folder_path)
+    e1 = E1(taskGrid, 4, win, behav_data, sub_info, sub_folder_path)
+    e2 = E2(taskGrid, 4, win, behav_data, sub_info, sub_folder_path)
+    e3 = E3(taskGrid, 4, win, behav_data, sub_info, sub_folder_path)
 
     phase_1_sequence = [e1, e2, e3] 
     random.shuffle(phase_1_sequence)

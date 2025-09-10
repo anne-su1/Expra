@@ -34,16 +34,6 @@ class Questionnaire:
             return sub_data
         else:
             return None
-
-    def create_sub_data_folder(self, sub_id: str) -> str:
-        # create a folder to store the output
-        output_path = os.getcwd() + f'/sub-{sub_id}'
-        if not os.path.exists(output_path):         # wenn Pfad nicht existiert, mache diesen ordner (makedirs)
-            os.makedirs(output_path)                # zweites if Statement nötig, wenn pfad nicht existiert, um nicht weiter um nicht zu überschreiben
-            
-        file_path = output_path + f'/sub-{sub_id}_behav_data.csv' # TO DO: change task_catsHuman to real name
-
-        return file_path
     
     def fatigue_questionnaire_1(self):
         fat_quest_1 = gui.Dlg(title="fatigue questionnaire")
@@ -54,13 +44,13 @@ class Questionnaire:
         fat_quest_1.addField("Haben Sie die Zeitangaben bemerkt?", choices=["bemerkt und häufig nachgesehen", "bemerkt und manchmal nachgesehen", "nicht bemerkt"])
         fat_quest_1.show()
 
-        quest_data_1 = pd.DataFrame({
+        quest_data_1 = pd.DataFrame([{
             'sub_id' : self.sub_info.get("sub_id"),
-            'Q1E1' : (fat_quest_1[0]),
-            'Q1E2' : (fat_quest_1[1]),
-            'Q1E3' : (fat_quest_1[2]),
-            'Q2Phase1' : fat_quest_1[3]
-        })
+            'Q1E1' : fat_quest_1.data[0],
+            'Q1E2' : fat_quest_1.data[1],
+            'Q1E3' : fat_quest_1.data[2],
+            'Q2Phase1' : fat_quest_1.data[3]
+        }])
 
         self.quest_data = pd.concat([self.quest_data, quest_data_1], ignore_index=True)
 
@@ -74,13 +64,13 @@ class Questionnaire:
         fat_quest_2.addField("Haben Sie die Zeitangaben bemerkt?", choices=["bemerkt und häufig nachgesehen", "bemerkt und manchmal nachgesehen", "nicht bemerkt"])
         fat_quest_2.show()
 
-        quest_data_2 = pd.DataFrame({
+        quest_data_2 = pd.DataFrame([{
             'sub_id' : self.sub_info.get("sub_id"),
-            'Q1E4' : (fat_quest_2[0]),
-            'Q1E5' : (fat_quest_2[1]),
-            'Q1E6' : (fat_quest_2[2]),
-            'Q2Phase2' : fat_quest_2[3]
-        })
+            'Q1E4' : fat_quest_2.data[0],
+            'Q1E5' : fat_quest_2.data[1],
+            'Q1E6' : fat_quest_2.data[2],
+            'Q2Phase2' : fat_quest_2.data[3]
+        }])
 
         self.quest_data = pd.concat([self.quest_data, quest_data_2], ignore_index=True)
         self.quest_data.to_csv(self.sub_folder_path + f'/sub-{self.sub_info.get("sub_id")}_quest_data.csv')

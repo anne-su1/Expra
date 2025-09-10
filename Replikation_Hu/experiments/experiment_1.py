@@ -57,15 +57,19 @@ class E1:
             trial_answer = gui.Dlg(title = "Trial Answer")
             trial_answer.addField("Wie viele 'E's' waren auf dem Display zu sehen?")
             trial_answer.show()
+            try:
+                E_amount_answer = int(trial_answer.data[0])
+            except (ValueError, TypeError):
+                E_amount_answer = None
 
             trial_data = {
                 **self.sub_info,
                 "block": 1,
                 "trial": trial_counter,
                 "reaction_time": trial_reaction_time,
-                "E_amount_answer": int(trial_answer.data[0]),
+                "E_amount_answer": E_amount_answer,
                 "E_counter": self.task.E_counter,
-                "is_corr": int(int(trial_answer.data[0]) == self.task.E_counter)
+                "is_corr": int(E_amount_answer == self.task.E_counter) if E_amount_answer is not None else 0
             }
             
             self.behav_data.loc[len(self.behav_data)] = trial_data
