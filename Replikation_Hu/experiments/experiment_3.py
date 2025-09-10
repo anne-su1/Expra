@@ -93,9 +93,8 @@ class E3:
                 "is_corr": int(int(trial_answer.data[0]) == self.task.E_counter)
             }
             
-            self.behav_data = pd.concat([self.behav_data, pd.DataFrame([trial_data])], ignore_index=True)
-        
-        self.behav_data.to_csv(self.sub_folder_path + f'/sub-{self.sub_info.get("sub_id")}_behav_data.csv', mode='a')
+            self.behav_data.loc[len(self.behav_data)] = trial_data
+            self.behav_data.to_csv(self.sub_folder_path + f'/sub-{self.sub_info.get("sub_id")}_behav_data.csv')
 
         text_stim_e3.setText('Sie haben Block 3 geschafft!')
         text_stim_e3.draw()
