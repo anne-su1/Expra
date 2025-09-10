@@ -7,14 +7,11 @@ class E1:
 
     task: Task_grid
     experiment_duration: int
-    timer: core.CountdownTimer
     win: visual.Window
     behav_data: pd.DataFrame
     sub_info: dict 
     sub_folder_path: str
     color = "black"
-
-    # Dataframe vom sub
 
     def __init__(self, taskGrid: Task_grid, duration: int, win: visual.Window, behav_data: pd.DataFrame, sub_info: dict, sub_folder_path: str):
         self.task = taskGrid
@@ -40,7 +37,7 @@ class E1:
         trial_counter = 0
         timer = core.Clock()
 
-        while timer.getTime() < self.experiment_duration:         # /10 ändern
+        while timer.getTime() < self.experiment_duration:
             self.draw_fixation((0., 0.))
             trial_counter = trial_counter + 1
             self.task.generate_experiment_task()
@@ -49,15 +46,14 @@ class E1:
             self.win.flip()
            
             trial_start_time = timer.getTime()
-        
-            while timer.getTime() < 240:
+            trial_reaction_time = float("nan")
+            while timer.getTime() < self.experiment_duration:
                 keys = event.getKeys(keyList='space')
                 if keys:
                     trial_reaction_time = timer.getTime() - trial_start_time
-                    self.win.flip()
                     break
 
-
+            self.win.flip()
             trial_answer = gui.Dlg(title = "Trial Answer")
             trial_answer.addField("Wie viele 'E's' waren auf dem Display zu sehen?")
             trial_answer.show()
