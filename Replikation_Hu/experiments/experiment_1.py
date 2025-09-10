@@ -34,13 +34,14 @@ class E1:
         timer = core.Clock()
 
         while timer.getTime() < 240:
-            self.draw_fixation(self.win, (0., 0.))
+            self.draw_fixation((0., 0.))
 
             trial_start_time = timer.getTime()
 
             self.task.generate_experiment_task()
-            if event.getKeys == 'space':
-                self.win.flip()
+            self.task.draw(self.win)
+            self.win.flip()
+            core.wait(10)
 
             trial_reaction_time = timer.getTime() - trial_start_time
 
@@ -48,8 +49,8 @@ class E1:
             trial_answer.addField("Wie viele 'E's' waren auf dem Display zu sehen?")
             trial_answer.show()
 
-            self.data['reaction_time'].append(trial_reaction_time)
-            self.data['E_amount_answer'].append(trial_answer)
+            #self.data['reaction_time'].append(trial_reaction_time)
+            #self.data['E_amount_answer'].append(trial_answer)
 
            
         # starten, displays generieren, input/ reaction time sub speichern, neues display bis 4min um, dann aktuelles display beenden, 
