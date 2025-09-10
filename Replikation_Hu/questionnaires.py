@@ -13,16 +13,16 @@ class Questionnaire:
         self.quest_data = quest_data
 
     def sub_input(self) -> dict:
-        fat_quest_1 = gui.Dlg(title="Participant Data")
-        fat_quest_1.addField("sub_id", initial="01")
-        fat_quest_1.addField("age")
-        fat_quest_1.addField("sex", choices=["male", "female"])
-        fat_quest_1.addField("normal or corrected sight", choices=["normal", "corrected"])
-        fat_quest_1.addField("handedness", choices=["right", "left"])
-        fat_quest_1.show()
+        supervisory_input = gui.Dlg(title="Participant Data")
+        supervisory_input.addField("sub_id", initial="01")
+        supervisory_input.addField("age")
+        supervisory_input.addField("sex", choices=["male", "female"])
+        supervisory_input.addField("normal or corrected sight", choices=["normal", "corrected"])
+        supervisory_input.addField("handedness", choices=["right", "left"])
+        supervisory_input.show()
 
-        if fat_quest_1.OK:
-            raw_data = fat_quest_1.data
+        if supervisory_input.OK:
+            raw_data = supervisory_input.data
             sub_data = {
                 "sub_id": raw_data[0],
                 "age": int(raw_data[1]),
@@ -30,6 +30,7 @@ class Questionnaire:
                 "normal or corrected sight": raw_data[3],
                 "handedness": raw_data[4]
             }
+            self.sub_info = sub_data
             return sub_data
         else:
             return None
@@ -40,7 +41,7 @@ class Questionnaire:
         if not os.path.exists(output_path):         # wenn Pfad nicht existiert, mache diesen ordner (makedirs)
             os.makedirs(output_path)                # zweites if Statement nötig, wenn pfad nicht existiert, um nicht weiter um nicht zu überschreiben
             
-        file_path = output_path + f'/sub-{sub_id}_task-catshumans.tsv' # TO DO: change task_catsHuman to real name
+        file_path = output_path + f'/sub-{sub_id}_behav_data.csv' # TO DO: change task_catsHuman to real name
 
         return file_path
     
@@ -55,9 +56,9 @@ class Questionnaire:
 
         quest_data_1 = pd.DataFrame({
             'sub_id' : self.sub_info.get("sub_id"),
-            'Q1E1' : int(fat_quest_1[0]),
-            'Q1E2' : int(fat_quest_1[1]),
-            'Q1E3' : int(fat_quest_1[2]),
+            'Q1E1' : (fat_quest_1[0]),
+            'Q1E2' : (fat_quest_1[1]),
+            'Q1E3' : (fat_quest_1[2]),
             'Q2Phase1' : fat_quest_1[3]
         })
 
@@ -75,9 +76,9 @@ class Questionnaire:
 
         quest_data_2 = pd.DataFrame({
             'sub_id' : self.sub_info.get("sub_id"),
-            'Q1E4' : int(fat_quest_2[0]),
-            'Q1E5' : int(fat_quest_2[1]),
-            'Q1E6' : int(fat_quest_2[2]),
+            'Q1E4' : (fat_quest_2[0]),
+            'Q1E5' : (fat_quest_2[1]),
+            'Q1E6' : (fat_quest_2[2]),
             'Q2Phase2' : fat_quest_2[3]
         })
 
