@@ -24,10 +24,10 @@ def main():
         'reaction_time' : [],
         'E_amount_answer' : [],
         'E_counter' : [],
-        'corr_E_amount_answer' : []
+        'is_corr' : []
     })
     
-    quest_data = pd.DataFrame({
+    quest_data = pd.DataFrame({ 
         'sub_id' : [],               # dictionary nur dann verwenden bzw verändern wenn wirklich nötig 
         'Q1E1' : [],                 # [] leere Liste
         'Q1E2' : [],                 # dataframe wird mit jedem versuchsdurchgang gefüllt
@@ -55,7 +55,7 @@ def main():
     # Begrüssung
     win = visual.Window(                    # Psychopy benutzt in visual, window als fkt von visual
         color='grey',                       # Hintergrundfarbe (auch rgb mgl)
-        size=[2000, 1100],                  # Anzahl Pixel (Größe Pixel)
+        size=[1750, 1100],                  # Anzahl Pixel (Größe Pixel)
         fullscr=False,
         useRetina=True) 
     instruction = Instruction(win)
@@ -68,12 +68,12 @@ def main():
     random = Random()
     taskGrid = Task_grid(8, 16, random)
 
-    e1 = E1(taskGrid, 240, win, behav_data)
-    e2 = E2(taskGrid, 240, win)
-    e3 = E3(taskGrid, 240, win)
+    e1 = E1(taskGrid, 240, win, behav_data, sub_info, sub_folder_path)
+    #e2 = E2(taskGrid, 240, win)
+   # e3 = E3(taskGrid, 240, win)
 
-    phase_1_sequence = [e1, e2, e3]
-    random.shuffle(phase_1_sequence)
+    phase_1_sequence = [e1] #, e2, #e3]
+   # random.shuffle(phase_1_sequence)
 
     for experiment in phase_1_sequence:
         experiment.practice()

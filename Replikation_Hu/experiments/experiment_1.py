@@ -9,60 +9,111 @@ class E1:
     experiment_duration: int
     timer: core.CountdownTimer
     win: visual.Window
-    data: pd.DataFrame
+    behav_data: pd.DataFrame
+    sub_info: dict 
+    sub_folder_path: str
+    color = "black"
 
     # Dataframe vom sub
 
-    def __init__(self, taskGrid: Task_grid, duration: int, win: visual.Window, data: pd.DataFrame):
+    def __init__(self, taskGrid: Task_grid, duration: int, win: visual.Window, behav_data: pd.DataFrame, sub_info: dict, sub_folder_path: str):
         self.task = taskGrid
         self.experiment_duration = duration
         self.win = win
-        self.data = data
+        self.behav_data = behav_data
+        self.sub_info = sub_info
+        self.sub_folder_path = sub_folder_path 
+
 
     def start(self):
         #print("E1 gestartet")
         text_stim_e1 = visual.TextStim(self.win,
-                                       height=0.085)
+                                       height=0.085,
+                                       color=self.color)
         text_stim_e1.setText(
             '''Start Block 1
-            \n\n Zum Starten bitte die Leertaste drücken
+            \n\n Zum Starten bitte die Leertaste drücken.
         ''')
         text_stim_e1.draw()
         self.win.flip()
         event.waitKeys(keyList=['space'])
 
+        trial_counter = 0
         timer = core.Clock()
 
-        while timer.getTime() < 240:
+        while timer.getTime() < 20:         #240
             self.draw_fixation((0., 0.))
-
-            trial_start_time = timer.getTime()
-
+            trial_counter = trial_counter + 1
             self.task.generate_experiment_task()
+
             self.task.draw(self.win)
             self.win.flip()
-            core.wait(10)
+           
+            trial_start_time = timer.getTime()
+        
+            while timer.getTime() < 240:
+                keys = event.getKeys(keyList='space')
+                if keys:
+                    trial_reaction_time = timer.getTime() - trial_start_time
+                    self.win.flip()
+                    break
 
-            trial_reaction_time = timer.getTime() - trial_start_time
 
             trial_answer = gui.Dlg(title = "Trial Answer")
             trial_answer.addField("Wie viele 'E's' waren auf dem Display zu sehen?")
             trial_answer.show()
 
-            #self.data['reaction_time'].append(trial_reaction_time)
-            #self.data['E_amount_answer'].append(trial_answer)
+            trial_data = {
+                **self.sub_info,
+                "block": 1,
+                "trial": trial_counter,
+                "reaction_time": trial_reaction_time,
+                "E_amount_answer": int(trial_answer.data[0]),
+                "E_counter": self.task.E_counter,
+                "is_corr": int(int(trial_answer.data[0]) == self.task.E_counter)
+            }
+            
+            self.behav_data = pd.concat([self.behav_data, pd.DataFrame([trial_data])], ignore_index=True)
+            self.behav_data.to_csv(self.sub_folder_path + f'/sub-{self.sub_info.get("sub_id")}_behav_data.csv')
 
-           
-        # starten, displays generieren, input/ reaction time sub speichern, neues display bis 4min um, dann aktuelles display beenden, 
-        # textfeld anzeigen Ende Block 1
+        text_stim_e1.setText(
+                '''Sie haben Block 1 geschafft!''')
+        text_stim_e1.draw()
+        self.win.flip()
+        core.wait(5)
+        
     
     def practice(self):
+        text_stim_e1 = visual.TextStim(self.win,
+                                       height=0.085,
+                                       color=self.color)
+        text_stim_e1.setText(
+            '''Sie beginnen nun mit 3 Übungsaufgaben für Block 1.
+            \n Bitte zählen Sie die vorhandenen E's und drücken Sie danach auf die Leertaste.
+            \n Es öffnet sich ein Fenster in dem Sie bitte die Anzahl der gezählten E's eintragen und mit "OK" bestätigen.
+            \n\n Zum Starten bitte die Leertaste drücken.
+            ''')
+        text_stim_e1.draw()
+        self.win.flip()
+        event.waitKeys(keyList='space')
+
         for i in range(3):
             self.draw_fixation((0.0, 0.0))
             self.task.generate_experiment_task()
             self.task.draw(self.win)
             self.win.flip()
-            keys = event.waitKeys()
+            
+            while True:
+                keys = event.getKeys(keyList='space')
+                if keys:
+                    self.win.flip()
+                    break
+
+            trial_answer = gui.Dlg(title = "Trial Answer")
+            trial_answer.addField("Wie viele 'E's' waren auf dem Display zu sehen?")
+            trial_answer.show()
+
+
 
     def draw_fixation(self, fixation_position):
         fixation = visual.ShapeStim(self.win,
