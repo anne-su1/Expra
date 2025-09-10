@@ -100,7 +100,15 @@ class E3:
         text_stim_e3.setText('Sie haben Block 3 geschafft!')
         text_stim_e3.draw()
         self.win.flip()
-        core.wait(5)
+        core.wait(3)
+
+        text_stim_e3.setText(
+            '''Sie haben nun 2 min Pause.
+            \n\n Wenn Sie früher bereit sind fortzufahren, drücken Sie die Leertaste.'''
+        )
+        text_stim_e3.draw()
+        self.win.flip()
+        event.waitKeys(maxWait = 120, keyList = ['space'])
 
     def practice(self):
         text_stim_e3 = visual.TextStim(self.win,

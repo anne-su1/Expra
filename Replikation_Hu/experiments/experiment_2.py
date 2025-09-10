@@ -101,8 +101,15 @@ class E2:
                 '''Sie haben Block 2 geschafft!''')
         text_stim_e2.draw()
         self.win.flip()
-        core.wait(5)
+        core.wait(3)
 
+        text_stim_e2.setText(
+            '''Sie haben nun 2 min Pause.
+            \n\n Wenn Sie früher bereit sind fortzufahren, drücken Sie die Leertaste.'''
+        )
+        text_stim_e2.draw()
+        self.win.flip()
+        event.waitKeys(maxWait = 120, keyList = ['space'])
 
 
     def practice(self):

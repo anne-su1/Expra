@@ -16,12 +16,12 @@ class Instruction:
             '''Willkommen zu unserem Experiment! 
             \n\n In diesem Experiment sollen Sie die Buchstaben "E" unter den "F" suchen und zählen.
             \n Diese Buchstaben werden auch gedreht und gespiegelt angezeigt. 
-            \n In jedem Durchgang verändert sich die Anzahl der "E's". Zählen Sie, wie viele "E's" enthalten sind und geben Sie die entsprechende Zahl ein. Danach drücken Sie die Leertaste, um zur nächsten Aufgabe zu gelangen.
+            \n In jedem Durchgang verändert sich die Anzahl der E's. Zählen Sie, wie viele E's enthalten sind und geben Sie die entsprechende Zahl ein. Danach drücken Sie die Leertaste, um zur nächsten Aufgabe zu gelangen.
             \n\n Zum Fortfahren bitte die Leertaste drücken.
         ''')        # Funktion die setTxt heißt
         text_stim_1.draw()                                              # zusagmmengefügt, zeig bitte an
         self.win.flip()                                                      # Fenster wird aktualisiert
-        event.waitKeys(maxWait= 20.0, keyList=['space'])     
+        event.waitKeys(keyList=['space'])     
 
         text_stim_2 = visual.TextStim(self.win, height=0.085, color= self.color)                              # text stimuli self.win aus Zeile 15
         text_stim_2.setText(
@@ -33,7 +33,7 @@ class Instruction:
         ''')        # Funktion die setTxt heißt
         text_stim_2.draw()                                              # zusagmmengefügt, zeig bitte an
         self.win.flip()                                                      # Fenster wird aktualisiert
-        event.waitKeys(maxWait= 20.0, keyList=['space']) 
+        event.waitKeys(keyList=['space']) 
 
     def instruction_for_phase_1(self):
         text_stim = visual.TextStim(self.win, height=0.085, color= self.color)                              # text stimuli self.win aus Zeile 15
