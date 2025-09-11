@@ -23,6 +23,8 @@ class E4:
         self.sub_folder_path = sub_folder_path 
         self.mean_rt_plus_sd = mean_rt_plus_sd
 
+    def getExperimentNumber(self) -> int:
+        return 4
 
     def start(self):
         text = visual.TextStim(
@@ -121,6 +123,8 @@ class E4:
         self.win.flip()
         event.waitKeys(maxWait = 120, keyList = ['space'])
 
+    def practice(self):
+        print("practice e4")
 
     def draw_fixation(self, fixation_position):
         fixation = visual.ShapeStim(self.win,

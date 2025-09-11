@@ -21,6 +21,8 @@ class E5:
         self.sub_info = sub_info
         self.sub_folder_path = sub_folder_path 
 
+    def getExperimentNumber(self) -> int:
+        return 6
 
     def start(self):
         text_stim_e6 = visual.TextStim(self.win,
@@ -89,6 +91,8 @@ class E5:
         self.win.flip()
         event.waitKeys(maxWait = 120, keyList = ['space'])
 
+    def practice(self):
+        print("practice e6")
 
     def draw_fixation(self, fixation_position):
         fixation = visual.ShapeStim(self.win,

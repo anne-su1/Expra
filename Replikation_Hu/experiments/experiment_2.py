@@ -19,8 +19,10 @@ class E2:
         self.behav_data = behav_data
         self.sub_info = sub_info
         self.sub_folder_path = sub_folder_path
+
+    def getExperimentNumber(self) -> int:
+        return 2
        
-    
     def start(self):
         text = visual.TextStim(
             self.win,
