@@ -99,7 +99,7 @@ class E3:
             }
             
             self.behav_data.loc[len(self.behav_data)] = trial_data
-            self.behav_data.to_csv(self.sub_folder_path + f'/sub-{self.sub_info.get("sub_id")}_behav_data.csv')
+            self.behav_data.to_csv(self.sub_folder_path + f'/sub-{self.sub_info.get("sub_id")}_behav_data_1.csv')
 
         text_stim_e3.setText('Sie haben Block 3 geschafft!')
         text_stim_e3.draw()
@@ -122,7 +122,7 @@ class E3:
             '''Sie beginnen nun mit 3 Übungsaufgaben für Block 3.
             \n Bitte zählen Sie die vorhandenen E's und drücken Sie danach auf die Leertaste.
             \n Es öffnet sich ein Fenster in dem Sie bitte die Anzahl der gezählten E's eintragen und mit "OK" bestätigen.
-            \n\n Zum Starten bitte die Leertaste drücken.
+            \n\n Zum Starten der Übung bitte die Leertaste drücken.
             ''')
         text_stim_e3.draw()
         self.win.flip()
