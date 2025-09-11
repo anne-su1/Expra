@@ -79,12 +79,12 @@ def main():
     random = Random()
     taskGrid = Task_grid(8, 16, random)
 
-    e1 = E1(taskGrid, 10, win, behav_data_1, sub_info, sub_folder_path)
-    e2 = E2(taskGrid, 10, win, behav_data_1, sub_info, sub_folder_path)
-    e3 = E3(taskGrid, 10, win, behav_data_1, sub_info, sub_folder_path)
-    e4 = E4(taskGrid, 10, win, behav_data_2, sub_info, sub_folder_path)
-    e5 = E5(taskGrid, 10, win, behav_data_2, sub_info, sub_folder_path)
-    e6 = E6(taskGrid, 10, win, behav_data_2, sub_info, sub_folder_path)
+    e1 = E1(taskGrid, 240, win, behav_data_1, sub_info, sub_folder_path)
+    e2 = E2(taskGrid, 240, win, behav_data_1, sub_info, sub_folder_path)
+    e3 = E3(taskGrid, 240, win, behav_data_1, sub_info, sub_folder_path)
+    e4 = E4(taskGrid, 240, win, behav_data_2, sub_info, sub_folder_path)
+    e5 = E5(taskGrid, 240, win, behav_data_2, sub_info, sub_folder_path)
+    e6 = E6(taskGrid, 240, win, behav_data_2, sub_info, sub_folder_path)
 
     sequence_groups = { # in der Liste ist die erste Liste die Reihnfolge für Phase 1, die zweite für Phase 2 dann
         1: [[e1, e2, e3], [e6, e4, e5]],
@@ -102,7 +102,7 @@ def main():
     instruction.instruction_for_phase_1()
 
     for experiment in phase_1_sequence:
-        #experiment.practice()
+        experiment.practice()
         experiment.start()
 
     # ...
