@@ -36,7 +36,8 @@ class E4:
 
         text_stim_e4 = visual.TextStim(self.win,
                                        height=0.085,
-                                       color=self.color)
+                                       color=self.color,
+                                       wrapWidth= 1.8)
         text_stim_e4.setText(
             '''Start Block 4
             \n\n Zum Starten bitte die Leertaste drücken.

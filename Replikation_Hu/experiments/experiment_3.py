@@ -35,7 +35,8 @@ class E3:
 
         text_stim_e3 = visual.TextStim(self.win,
                                        height=0.085,
-                                       color=self.color)
+                                       color=self.color,
+                                       wrapWidth= 1.8)
         text_stim_e3.setText(
             '''Start Block 3
             \n\n Zum Starten bitte die Leertaste drücken.
@@ -120,7 +121,8 @@ class E3:
     def practice(self):
         text_stim_e3 = visual.TextStim(self.win,
                                        height=0.085,
-                                       color=self.color)
+                                       color=self.color,
+                                       wrapWidth= 1.8)
         text_stim_e3.setText(
             '''Sie beginnen nun mit 3 Übungsaufgaben für Block 3.
             \n Bitte zählen Sie die vorhandenen E's und drücken Sie danach auf die Leertaste.

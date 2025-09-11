@@ -36,7 +36,8 @@ class E6:
 
         text_stim_e6 = visual.TextStim(self.win,
                                        height=0.085,
-                                       color=self.color)
+                                       color=self.color,
+                                       wrapWidth= 1.8)
         text_stim_e6.setText(
             '''Start Block 6
             \n\n Zum Starten bitte die Leertaste drücken.

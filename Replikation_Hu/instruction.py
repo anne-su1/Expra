@@ -11,7 +11,7 @@ class Instruction:
 
     # Ausgabe der Begrüßung und Experimentbeschreibung auf den ersten Displayfenstern, mit Leertaste gehts weiter
     def initalHellos(self):
-        text_stim_1 = visual.TextStim(self.win, height=0.085, color= self.color)
+        text_stim_1 = visual.TextStim(self.win, height=0.085, color= self.color, wrapWidth= 1.8)
         text_stim_1.setText(
             '''Willkommen zu unserem Experiment! 
             \n\n In diesem Experiment sollen Sie die Buchstaben "E" unter den "F" suchen und zählen.
@@ -23,7 +23,7 @@ class Instruction:
         self.win.flip()                                                      
         event.waitKeys(keyList=['space'])     
 
-        text_stim_2 = visual.TextStim(self.win, height=0.085, color= self.color)                              
+        text_stim_2 = visual.TextStim(self.win, height=0.085, color= self.color, wrapWidth= 1.8)                              
         text_stim_2.setText(
             '''Es gibt 2 Phasen mit je 3 separaten Blöcken. 
             \n Stellen Sie sich vor, dass Sie in einer Notsituation sind, in der es auf Schnelligkeit und Genauigkeit ankommt. 
@@ -35,7 +35,7 @@ class Instruction:
         self.win.flip()                                                      
         event.waitKeys(keyList=['space']) 
 
-        text_stim_3 = visual.TextStim(self.win, height=0.085, color= self.color)                              
+        text_stim_3 = visual.TextStim(self.win, height=0.085, color= self.color, wrapWidth= 1.8)                              
         text_stim_3.setText(
             '''Nach jeder Phase werden Sie zu Ihrem subjektiven Erschöpfungslevel befragt.
             \n\n\n Zum Fortfahren bitte die Leertaste drücken.
@@ -46,7 +46,7 @@ class Instruction:
 
     # Ausgabe der Beschreibung und Instruktion von Phase 1 auf den Displayfenstern, mit Leertaste gehts weiter
     def instruction_for_phase_1(self):
-        text_stim = visual.TextStim(self.win, height=0.085, color= self.color)                              
+        text_stim = visual.TextStim(self.win, height=0.085, color= self.color, wrapWidth= 1.8)                              
         text_stim.setText(
             '''Wir starten jetzt mit Phase 1. 
             \n Phase 1 besteht aus 3 Blöcken. Vor jedem der Blöcke absolvieren Sie 3 Übungsdurchgänge. Nach jedem Block haben Sie 2 Minuten Pause.
@@ -58,7 +58,7 @@ class Instruction:
 
     # Ausgabe der Beschreibung und Instruktion von Phase 2 auf den Displayfenstern, mit Leertaste gehts weiter
     def instruction_for_phase_2(self):
-        text_stim_1 = visual.TextStim(self.win, height=0.085, color= self.color)                             
+        text_stim_1 = visual.TextStim(self.win, height=0.085, color= self.color, wrapWidth= 1.8)                             
         text_stim_1.setText(
             '''Jetzt beginnt Phase 2.
             \n Phase 2 besteht ebenso aus 3 Blöcken. Auch hier gibt es vor jedem Block 3 Übungsdurchgänge. Zwischen den Blöcken haben Sie 2 Minuten Pause.
@@ -69,7 +69,7 @@ class Instruction:
         self.win.flip()                                                     
         event.waitKeys(keyList=['space'])
 
-        text_stim_2 = visual.TextStim(self.win, height=0.085, color= self.color)                              
+        text_stim_2 = visual.TextStim(self.win, height=0.085, color= self.color, wrapWidth= 1.8)                              
         text_stim_2.setText(
             '''In jedem Durchgang werden Sie einen Countdown-Timer sehen, der anzeigt in welcher Zeit Sie die Suchaufgabe bearbeiten müssen.
             \n Wenn der Countdown abgelaufen ist verschwinden die Buchstaben. Geben Sie bitte trotzdem eine Zahl ein und drücken die Leertaste, um zur nächsten Aufgabe zu gelangen.
@@ -81,7 +81,7 @@ class Instruction:
         
     # Ausgabe der Verabschiedung auf den Displayfenstern
     def say_goodbye(self):
-        text_stim = visual.TextStim(self.win, height=0.085, color= self.color)                              
+        text_stim = visual.TextStim(self.win, height=0.085, color= self.color, wrapWidth= 1.8)                              
         text_stim.setText(
             '''Das Experiment ist jetzt beendet.
             \n\n Vielen Dank für Ihre Teilnahme!
