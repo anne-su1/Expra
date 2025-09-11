@@ -40,6 +40,7 @@ def main():
         'block' : [],
         'trial' : [],
         'reaction_time' : [],
+        'max_time' : [],
         'E_amount_answer' : [],
         'E_counter' : [],
         'is_corr' : [],
@@ -78,12 +79,12 @@ def main():
     random = Random()
     taskGrid = Task_grid(8, 16, random)
 
-    e1 = E1(taskGrid, 4, win, behav_data_1, sub_info, sub_folder_path)
-    e2 = E2(taskGrid, 4, win, behav_data_1, sub_info, sub_folder_path)
-    e3 = E3(taskGrid, 4, win, behav_data_1, sub_info, sub_folder_path)
-    e4 = E4()
-    e5 = E5()
-    e6 = E6()
+    e1 = E1(taskGrid, 10, win, behav_data_1, sub_info, sub_folder_path)
+    e2 = E2(taskGrid, 10, win, behav_data_1, sub_info, sub_folder_path)
+    e3 = E3(taskGrid, 10, win, behav_data_1, sub_info, sub_folder_path)
+    e4 = E4(taskGrid, 10, win, behav_data_2, sub_info, sub_folder_path)
+    e5 = E5(taskGrid, 10, win, behav_data_2, sub_info, sub_folder_path)
+    e6 = E6(taskGrid, 10, win, behav_data_2, sub_info, sub_folder_path)
 
     sequence_groups = { # in der Liste ist die erste Liste die Reihnfolge für Phase 1, die zweite für Phase 2 dann
         1: [[e1, e2, e3], [e6, e4, e5]],
@@ -101,16 +102,25 @@ def main():
     instruction.instruction_for_phase_1()
 
     for experiment in phase_1_sequence:
-        experiment.practice()
+        #experiment.practice()
         experiment.start()
 
     # ...
 
     # fatigue questionnare 1
-
+    win.flip()
     questionnaire.fatigue_questionnaire_1()
 
     # Phase 2
+    # Berechnen von individuellen Rektionszeiten für Phase 2
+    mean_rt = behav_data_1['reaction_time'].mean()
+    mean_rt_plus_sd = behav_data_1['reaction_time'].mean()+ behav_data_1['reaction_time'].std()
+    mean_rt_minus_sd = behav_data_1['reaction_time'].mean()- behav_data_1['reaction_time'].std()
+
+    e4.mean_rt_plus_sd = mean_rt_plus_sd 
+    e5.mean_rt = mean_rt
+    e6.mean_rt_minus_sd = mean_rt_minus_sd 
+
     instruction.instruction_for_phase_2()
 
     for experiment in phase_2_sequence:
@@ -120,7 +130,7 @@ def main():
     # ...
 
     # fatigue questionnare 2
-
+    win.flip()
     questionnaire.fatigue_questionnaire_2()
 
     # Danke

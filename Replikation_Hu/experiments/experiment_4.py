@@ -14,14 +14,13 @@ class E4:
     mean_rt_plus_sd : float
     color = "black"
 
-    def __init__(self, taskGrid: Task_grid, duration: int, win: visual.Window, behav_data: pd.DataFrame, sub_info: dict, sub_folder_path: str, mean_rt_plus_sd : float):
+    def __init__(self, taskGrid: Task_grid, duration: int, win: visual.Window, behav_data: pd.DataFrame, sub_info: dict, sub_folder_path: str):
         self.task = taskGrid
         self.experiment_duration = duration
         self.win = win
         self.behav_data = behav_data
         self.sub_info = sub_info
         self.sub_folder_path = sub_folder_path 
-        self.mean_rt_plus_sd = mean_rt_plus_sd
 
     def getExperimentNumber(self) -> int:
         return 4
@@ -57,8 +56,9 @@ class E4:
             self.task.draw(self.win)
 
             countdown = core.CountdownTimer(self.mean_rt_plus_sd +1)
-            mins = int(countdown // 60)
-            secs = int(countdown % 60)
+            elapsed = countdown.getTime()
+            mins = int(elapsed // 60)
+            secs = int(elapsed % 60)
             time_str = f"{mins:02d}:{secs:02d}"
             text.setText(time_str)
             text.draw()
@@ -100,10 +100,11 @@ class E4:
                 "block": 4,
                 "trial": trial_counter,
                 "reaction_time": trial_reaction_time,
+                "max_time": self.mean_rt_plus_sd,
                 "E_amount_answer": E_amount_answer,
                 "E_counter": self.task.E_counter,
                 "is_corr": int(E_amount_answer == self.task.E_counter) if E_amount_answer is not None else 0,
-                "answer_in_time": trial_reaction_time <= self.mean_rt_plus_rt
+                "answer_in_time": int(trial_reaction_time <= self.mean_rt_plus_sd)
             }
             
             self.behav_data.loc[len(self.behav_data)] = trial_data
@@ -136,4 +137,3 @@ class E4:
         fixation.draw()
         self.win.update()
         core.wait(1)
-        

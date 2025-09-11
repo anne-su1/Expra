@@ -60,7 +60,7 @@ class Instruction:
         text_stim_1.setText(
             '''Jetzt beginnt Phase 2.
             \n Phase 2 besteht ebenso aus 3 Blöcken. Auch hier gibt es vor jedem Block 3 Übungsdurchgänge. Zwischen den Blöcken haben Sie 2 Minuten Pause.
-            \n Behalten Sie die selbe Suchstrategie bei, wie bisher.
+            \n Behalten Sie dieselbe Suchstrategie bei, wie bisher.
             \n\n Zum Fortfahren bitte die Leertaste drücken.
         ''')        # Funktion die setTxt heißt
         text_stim_1.draw()                                              # zusagmmengefügt, zeig bitte an
