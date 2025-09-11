@@ -7,8 +7,4 @@ class letter_cell:
             self.letter = letter
             self.rotation_angle = angle
             self.isMirrored = isMirrored
-
-    def __str__(self) -> str:
-        return f"{self.letter}({self.rotation_angle}-{self.isMirrored})"
-
-        
+                   

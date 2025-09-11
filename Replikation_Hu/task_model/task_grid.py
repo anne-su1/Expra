@@ -88,11 +88,3 @@ class Task_grid:
 
         for stim in stimuli_grid:
             stim.draw()
-
-
-    # Umwandlung Grid in String für Ausgabe  
-    def display(self) -> str:
-        lines = []
-        for row in self.grid:
-            lines.append(" ".join(str(c) for c in row))
-        return "\n".join(lines)
