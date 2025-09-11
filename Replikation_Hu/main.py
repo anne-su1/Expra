@@ -28,19 +28,7 @@ def main():
         'is_corr' : []
     })
     
-    quest_data = pd.DataFrame({ 
-        'sub_id' : [],               # dictionary nur dann verwenden bzw verändern wenn wirklich nötig 
-        'Q1E1' : [],                 # [] leere Liste
-        'Q1E2' : [],                 # dataframe wird mit jedem versuchsdurchgang gefüllt
-        'Q1E3' : [],
-        'Q2Phase1' : [],
-        'Q1E4' : [],
-        'Q1E5' : [],
-        'Q1E6' : [],
-        'Q2Phase2' : [],
-    })
-
-    questionnaire = Questionnaire(quest_data)
+    questionnaire = Questionnaire()
 
     # Sub Datenabfrage und sub-Ordner Erstellung
     sub_info = questionnaire.sub_input()
@@ -53,7 +41,7 @@ def main():
         os.makedirs(sub_folder_path)                # if Statement nötig, wenn pfad nicht existiert, um nicht weiter um nicht zu überschreiben
 
     questionnaire.sub_folder_path = sub_folder_path
-    
+
     # Begrüssung
     display = pyglet.canvas.get_display()
     screen = display.get_default_screen()

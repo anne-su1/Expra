@@ -84,7 +84,7 @@ class E3:
             trial_answer.show()
 
             try:
-                E_amount_answer = int(trial_answer.data[0]) * -1
+                E_amount_answer = int(trial_answer.data[0])
             except (ValueError, TypeError):
                 E_amount_answer = None
 
@@ -92,7 +92,7 @@ class E3:
                 **self.sub_info,
                 "block": 3,
                 "trial": trial_counter,
-                "reaction_time": trial_reaction_time,
+                "reaction_time": trial_reaction_time * -1.0,
                 "E_amount_answer": E_amount_answer,
                 "E_counter": self.task.E_counter,
                 "is_corr": int(E_amount_answer == self.task.E_counter) if E_amount_answer is not None else 0
