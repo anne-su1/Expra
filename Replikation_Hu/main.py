@@ -8,6 +8,9 @@ from task_model.task_grid import Task_grid
 from experiments.experiment_1 import E1
 from experiments.experiment_2 import E2
 from experiments.experiment_3 import E3
+from experiments.experiment_4 import E4
+from experiments.experiment_5 import E5
+from experiments.experiment_6 import E6
 
 
 from instruction import Instruction
@@ -55,18 +58,32 @@ def main():
 
     instruction.initalHellos()
 
-    # Phase 1
-    instruction.instruction_for_phase_1()
 
+    # Vorbereitung
     random = Random()
     taskGrid = Task_grid(8, 16, random)
 
     e1 = E1(taskGrid, 4, win, behav_data, sub_info, sub_folder_path)
     e2 = E2(taskGrid, 4, win, behav_data, sub_info, sub_folder_path)
     e3 = E3(taskGrid, 4, win, behav_data, sub_info, sub_folder_path)
+    e4 = E4()
+    e5 = E5()
+    e6 = E6()
 
-    phase_1_sequence = [e1, e2, e3] 
-    random.shuffle(phase_1_sequence)
+    sequence_groups = { # in der Liste ist die erste Liste die Reihnfolge für Phase 1, die zweite für Phase 2 dann
+        1: [[e1, e2, e3], [e6, e4, e5]],
+        2: [[e2, e3, e1], [e5, e6, e4]],
+        3: [[e3, e1, e2], [e4, e5, e6]]
+    }
+
+    sub_group = (int(sub_info.get("sub_id")) % 3) + 1
+    phase_1_sequence =  sequence_groups[sub_group][0]
+    phase_2_sequence = sequence_groups[sub_group][1]
+
+    questionnaire.sequence_for_phase_1, questionnaire.sequence_for_phase_2 = phase_1_sequence, phase_2_sequence
+    
+    # Phase 1
+    instruction.instruction_for_phase_1()
 
     for experiment in phase_1_sequence:
         experiment.practice()
@@ -79,8 +96,11 @@ def main():
     questionnaire.fatigue_questionnaire_1()
 
     # Phase 2
-
     instruction.instruction_for_phase_2()
+
+    for experiment in phase_2_sequence:
+        experiment.practice()
+        experiment.start()
 
     # ...
 

@@ -21,6 +21,8 @@ class E1:
         self.sub_info = sub_info
         self.sub_folder_path = sub_folder_path 
 
+    def getExperimentNumber(self) -> int:
+        return 1
 
     def start(self):
         text_stim_e1 = visual.TextStim(self.win,
