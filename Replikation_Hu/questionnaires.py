@@ -14,7 +14,7 @@ class Questionnaire:
         supervisory_input.addField("sub_id", initial="01")
         supervisory_input.addField("age")
         supervisory_input.addField("sex", choices=["male", "female"])
-        supervisory_input.addField("normal or corrected sight", choices=["normal", "corrected"])
+        supervisory_input.addField("normal / corrected sight", choices=["yes", "no"])
         supervisory_input.addField("handedness", choices=["right", "left"])
         supervisory_input.show()
 

@@ -49,7 +49,8 @@ class Instruction:
         text_stim = visual.TextStim(self.win, height=0.085, color= self.color, wrapWidth= 1.8)                              
         text_stim.setText(
             '''Wir starten jetzt mit Phase 1. 
-            \n Phase 1 besteht aus 3 Blöcken. Vor jedem der Blöcke absolvieren Sie 3 Übungsdurchgänge. Nach jedem Block haben Sie 2 Minuten Pause.
+            \n Phase 1 besteht aus 3 Blöcken in zufälliger Reihenfolge. Vor Beginn der Blöcke absolvieren Sie einmalig 3 Übungsdurchgänge. Nach jedem Block haben Sie 2 Minuten Pause.
+            \n Bitte schätzen Sie nach jedem Block ihr Erschöpfungslevel ein und teilen Sie es Ihrem Versuchsleiter mit.
             \n\n\n Zum Starten des Experiments bitte die Leertaste drücken.
         ''')       
         text_stim.draw()                                              
@@ -61,7 +62,8 @@ class Instruction:
         text_stim_1 = visual.TextStim(self.win, height=0.085, color= self.color, wrapWidth= 1.8)                             
         text_stim_1.setText(
             '''Jetzt beginnt Phase 2.
-            \n Phase 2 besteht ebenso aus 3 Blöcken. Auch hier gibt es vor jedem Block 3 Übungsdurchgänge. Zwischen den Blöcken haben Sie 2 Minuten Pause.
+            \n Phase 2 besteht ebenso aus 3 Blöcken in zufälliger Reihenfolge. Zwischen den Blöcken haben Sie 2 Minuten Pause.
+            \n Bitte schätzen Sie nach jedem Block ihr Erschöpfungslevel ein und teilen Sie es Ihrem Versuchsleiter mit.
             \n Behalten Sie dieselbe Suchstrategie bei, wie bisher.
             \n\n Zum Fortfahren bitte die Leertaste drücken.
         ''')        
