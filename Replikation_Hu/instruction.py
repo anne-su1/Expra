@@ -16,7 +16,7 @@ class Instruction:
             '''Willkommen zu unserem Experiment! 
             \n\n In diesem Experiment sollen Sie die Buchstaben "E" unter den "F" suchen und zählen.
             \n Diese Buchstaben werden auch gedreht und gespiegelt angezeigt. 
-            \n In jedem Durchgang verändert sich die Anzahl der E's. Zählen Sie, wie viele E's enthalten sind und geben Sie die entsprechende Zahl ein. Danach drücken Sie die Leertaste, um zur nächsten Aufgabe zu gelangen.
+            \n In jedem Durchgang verändert sich die Anzahl der E's. Zählen Sie, wie viele E's enthalten sind, drücken Sie die Leertaste und geben Sie die entsprechende Anzahl ein.
             \n\n Zum Fortfahren bitte die Leertaste drücken.
         ''')        
         text_stim_1.draw()                                              
@@ -74,7 +74,8 @@ class Instruction:
         text_stim_2 = visual.TextStim(self.win, height=0.085, color= self.color, wrapWidth= 1.8)                              
         text_stim_2.setText(
             '''In jedem Durchgang werden Sie einen Countdown-Timer sehen, der anzeigt in welcher Zeit Sie die Suchaufgabe bearbeiten müssen.
-            \n Wenn der Countdown abgelaufen ist verschwinden die Buchstaben. Geben Sie bitte trotzdem eine Zahl ein und drücken die Leertaste, um zur nächsten Aufgabe zu gelangen.
+            \n Im Idealfall drücken Sie vor Ablauf der Zeit die Leertaste, um die Anzahl der E's einzutragen.
+            \n Wenn der Countdown abgelaufen ist verschwinden die Buchstaben. Geben Sie bitte trotzdem eine Anzahl ein.
             \n\n Zum Starten des Experiments bitte die Leertaste drücken.
         ''')       
         text_stim_2.draw()                                             
