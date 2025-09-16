@@ -22,7 +22,7 @@ def main():
         'sub_id' : [],                
         'age' : [],                
         'sex' : [],                 
-        'normal or corrected sight' : [],
+        'normal / corrected sight' : [],
         'handedness' : [],
         'block' : [],
         'trial' : [],
@@ -38,7 +38,7 @@ def main():
         'sub_id' : [],               
         'age' : [],                 
         'sex' : [],                 
-        'normal or corrected sight' : [],
+        'normal / corrected sight' : [],
         'handedness' : [],
         'block' : [],
         'trial' : [],
@@ -111,10 +111,6 @@ def main():
     phase_1_sequence =  sequence_groups[sub_group][0]
     phase_2_sequence = sequence_groups[sub_group][1]
 
-    # Übergabe der Sequenz der Phasen an das Questionnaire 
-    # Sub sieht Blockreihenfolge entsprechend Gruppennummer im Questionnaire
-    questionnaire.sequence_for_phase_1, questionnaire.sequence_for_phase_2 = phase_1_sequence, phase_2_sequence
-    
     # ---- Phase 1 -----
     # Instruktionen für Phase 1
     instruction.instruction_for_phase_1()

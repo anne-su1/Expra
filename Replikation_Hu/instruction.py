@@ -37,7 +37,7 @@ class Instruction:
 
         text_stim_3 = visual.TextStim(self.win, height=0.085, color= self.color, wrapWidth= 1.8)                              
         text_stim_3.setText(
-            '''Nach jeder Phase werden Sie zu Ihrem subjektiven Erschöpfungslevel befragt.
+            '''Nach jedem Block werden Sie aufgefordert Ihr subjektives Erschöpfungslevel auf dem beiliegenden Zettel zu notieren und es am Ende jeder Phase in einen Fragebogen einzutragen.
             \n\n\n Zum Fortfahren bitte die Leertaste drücken.
         ''')        
         text_stim_3.draw()                                              
@@ -50,7 +50,7 @@ class Instruction:
         text_stim.setText(
             '''Wir starten jetzt mit Phase 1. 
             \n Phase 1 besteht aus 3 Blöcken in zufälliger Reihenfolge. Vor Beginn der Blöcke absolvieren Sie einmalig 3 Übungsdurchgänge. Nach jedem Block haben Sie 2 Minuten Pause.
-            \n Bitte schätzen Sie nach jedem Block ihr Erschöpfungslevel ein und teilen Sie es Ihrem Versuchsleiter mit.
+            \n Bitte schätzen Sie nach jedem Block ihr Erschöpfungslevel ein und notieren Sie es auf dem beiliegenden Zettel.
             \n\n\n Zum Starten des Experiments bitte die Leertaste drücken.
         ''')       
         text_stim.draw()                                              
@@ -63,7 +63,7 @@ class Instruction:
         text_stim_1.setText(
             '''Jetzt beginnt Phase 2.
             \n Phase 2 besteht ebenso aus 3 Blöcken in zufälliger Reihenfolge. Zwischen den Blöcken haben Sie 2 Minuten Pause.
-            \n Bitte schätzen Sie nach jedem Block ihr Erschöpfungslevel ein und teilen Sie es Ihrem Versuchsleiter mit.
+            \n Bitte schätzen Sie nach jedem Block ihr Erschöpfungslevel ein und notieren Sie es auf dem beiliegenden Zettel.
             \n Behalten Sie dieselbe Suchstrategie bei, wie bisher.
             \n\n Zum Fortfahren bitte die Leertaste drücken.
         ''')        
@@ -74,7 +74,6 @@ class Instruction:
         text_stim_2 = visual.TextStim(self.win, height=0.085, color= self.color, wrapWidth= 1.8)                              
         text_stim_2.setText(
             '''In jedem Durchgang werden Sie einen Countdown-Timer sehen, der anzeigt in welcher Zeit Sie die Suchaufgabe bearbeiten müssen.
-            \n Im Idealfall drücken Sie vor Ablauf der Zeit die Leertaste, um die Anzahl der E's einzutragen.
             \n Wenn der Countdown abgelaufen ist verschwinden die Buchstaben. Geben Sie bitte trotzdem eine Anzahl ein.
             \n\n Zum Starten des Experiments bitte die Leertaste drücken.
         ''')       

@@ -1,5 +1,6 @@
 from psychopy import core, visual, event, gui
 import pandas as pd
+import math
 
 # erstellte Klasse importieren
 from task_model.task_grid import Task_grid
@@ -117,7 +118,7 @@ class E4:
                 **self.sub_info,
                 "block": 4,
                 "trial": trial_counter,
-                "reaction_time": trial_reaction_time,
+                "reaction_time": trial_reaction_time if not math.isnan(trial_reaction_time) else self.mean_rt_plus_sd,
                 "max_time": self.mean_rt_plus_sd,
                 "E_amount_answer": E_amount_answer,
                 "E_counter": self.task.E_counter,
@@ -138,6 +139,7 @@ class E4:
 
         text_stim_e4.setText(
             '''Sie haben nun 2 min Pause.
+            \n Bitte notieren Sie auf dem beiliegenden Zettel Ihren Erschöpfungsgrad für Block 4!
             \n\n Wenn Sie früher bereit sind fortzufahren, drücken Sie die Leertaste.'''
         )
         text_stim_e4.draw()

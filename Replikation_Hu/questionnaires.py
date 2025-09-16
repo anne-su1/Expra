@@ -7,8 +7,6 @@ class Questionnaire:
     sub_info: dict
     sub_folder_path: str
     quest_data_1: dict
-    sequence_for_phase_1 : list
-    sequence_for_phase_2 : list
 
     # Anzeigen des Supervisory Inputs zum Aufnehmen der Daten der Versuchsperson
     # Daten werden als dictionary zurückgegeben
@@ -37,15 +35,14 @@ class Questionnaire:
             return None
     
     # Anzeigen des Questionnaires zur subjektiven Erschöpfung nach Phase 1
-    # "self.sequence_for_phase_1[0].getExperimentNumber()" für dynamisches Anpassen der Anzeige der Blockreihenfolge nach in main.py zugeteilter Gruppe
     def fatigue_questionnaire_1(self):
         fat_quest_1 = gui.Dlg(title="fatigue questionnaire")
         fat_quest_1.addText("1 = niedrigstes Level an Erschöpfung, 5 = höchstes Level an Erschöpfung")
-        fat_quest_1.addField(f"Erschöpfungslevel nach Block {self.sequence_for_phase_1[0].getExperimentNumber()}", 
+        fat_quest_1.addField("Erschöpfungslevel nach Block 1", 
                             choices=["1", "2", "3", "4", "5"])
-        fat_quest_1.addField(f"Erschöpfungslevel nach Block {self.sequence_for_phase_1[1].getExperimentNumber()}", 
+        fat_quest_1.addField("Erschöpfungslevel nach Block 2", 
                             choices=["1", "2", "3", "4", "5"])
-        fat_quest_1.addField(f"Erschöpfungslevel nach Block {self.sequence_for_phase_1[2].getExperimentNumber()}", 
+        fat_quest_1.addField("Erschöpfungslevel nach Block 3", 
                             choices=["1", "2", "3", "4", "5"])
         fat_quest_1.addField("Haben Sie die Zeitangaben bemerkt?", choices=["bemerkt und häufig nachgesehen", "bemerkt und manchmal nachgesehen", "nicht bemerkt"])
         fat_quest_1.show()
@@ -60,15 +57,14 @@ class Questionnaire:
                 }
 
     # Anzeigen des Questionnaires zur subjektiven Erschöpfung nach Phase 2
-    # "self.sequence_for_phase_2[0].getExperimentNumber()" für dynamisches Anpassen der Anzeige der Blockreihenfolge nach in main.py zugeteilter Gruppe
     def fatigue_questionnaire_2(self):
         fat_quest_2 = gui.Dlg(title="fatigue questionnaire")
         fat_quest_2.addText("1 = niedrigstes Level an Erschöpfung, 5 = höchstes Level an Erschöpfung")
-        fat_quest_2.addField(f"Erschöpfungslevel nach Block {self.sequence_for_phase_2[0].getExperimentNumber()}",
+        fat_quest_2.addField("Erschöpfungslevel nach Block 4",
                             choices=["1", "2", "3", "4", "5"])
-        fat_quest_2.addField(f"Erschöpfungslevel nach Block {self.sequence_for_phase_2[1].getExperimentNumber()}",
+        fat_quest_2.addField("Erschöpfungslevel nach Block 5",
                             choices=["1", "2", "3", "4", "5"])
-        fat_quest_2.addField(f"Erschöpfungslevel nach Block {self.sequence_for_phase_2[2].getExperimentNumber()}",
+        fat_quest_2.addField("Erschöpfungslevel nach Block 6",
                             choices=["1", "2", "3", "4", "5"])
         fat_quest_2.addField("Haben Sie die Zeitangaben bemerkt?", choices=["bemerkt und häufig nachgesehen", "bemerkt und manchmal nachgesehen", "nicht bemerkt"])
         fat_quest_2.show()

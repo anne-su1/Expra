@@ -103,6 +103,7 @@ class E1:
 
         text_stim_e1.setText(
             '''Sie haben nun 2 min Pause.
+            \n Bitte notieren Sie auf dem beiliegenden Zettel Ihren Erschöpfungsgrad für Block 1!
             \n\n Wenn Sie früher bereit sind fortzufahren, drücken Sie die Leertaste.'''
         )
         text_stim_e1.draw()

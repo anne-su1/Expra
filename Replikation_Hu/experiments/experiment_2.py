@@ -132,6 +132,7 @@ class E2:
 
         text_stim_e2.setText(
             '''Sie haben nun 2 min Pause.
+            \n Bitte notieren Sie auf dem beiliegenden Zettel Ihren Erschöpfungsgrad für Block 2!
             \n\n Wenn Sie früher bereit sind fortzufahren, drücken Sie die Leertaste.'''
         )
         text_stim_e2.draw()
