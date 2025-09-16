@@ -92,12 +92,12 @@ def main():
     taskGrid = Task_grid(8, 16, random)
 
     # Erstellung aller Experimente und Übergeben von Infos
-    e1 = E1(taskGrid, 20, win, behav_data_1, sub_info, sub_folder_path)
-    e2 = E2(taskGrid, 20, win, behav_data_1, sub_info, sub_folder_path)
-    e3 = E3(taskGrid, 20, win, behav_data_1, sub_info, sub_folder_path)
-    e4 = E4(taskGrid, 20, win, behav_data_2, sub_info, sub_folder_path)
-    e5 = E5(taskGrid, 20, win, behav_data_2, sub_info, sub_folder_path)
-    e6 = E6(taskGrid, 20, win, behav_data_2, sub_info, sub_folder_path)
+    e1 = E1(taskGrid, 240, win, behav_data_1, sub_info, sub_folder_path)
+    e2 = E2(taskGrid, 240, win, behav_data_1, sub_info, sub_folder_path)
+    e3 = E3(taskGrid, 240, win, behav_data_1, sub_info, sub_folder_path)
+    e4 = E4(taskGrid, 240, win, behav_data_2, sub_info, sub_folder_path)
+    e5 = E5(taskGrid, 240, win, behav_data_2, sub_info, sub_folder_path)
+    e6 = E6(taskGrid, 240, win, behav_data_2, sub_info, sub_folder_path)
 
     # Dict welches der Gruppennr. 1-3 eine Sequenz der Experimente in den Phasen 1 und 2 zuordnet (Übernahme Hu et.al.)
     sequence_groups = { 
