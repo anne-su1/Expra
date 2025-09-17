@@ -24,7 +24,7 @@ class Task_grid:
     # Generierung eines Displays mit E´s und F´s und zählt E´s
     def generate_experiment_task(self):
         angles = [0, 90, 180, 270]
-        max_E_for_task = self.random_seed.randint(0, self.max_E_count) # randomisierter Integer zwischen 0 und 13
+        max_E_for_task = self.random_seed.randint(8, self.max_E_count) # randomisierter Integer zwischen 8 und 13
         self.E_counter = 0
 
         # Alle Positionen für E's und F's im Grid werden erzeugt und gemischt
