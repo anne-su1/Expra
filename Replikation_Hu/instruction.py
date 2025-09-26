@@ -27,7 +27,7 @@ class Instruction:
         text_stim_2.setText(
             '''Es gibt 2 Phasen mit je 3 separaten Blöcken. 
             \n Stellen Sie sich vor, dass Sie in einer Notsituation sind, in der es auf Schnelligkeit und Genauigkeit ankommt. 
-            \n Versuchen Sie also in jedem Durchgang die Suchaufgabe so schnell und so genau wie möglich durchzuführen.
+            \n Versuchen Sie also in jedem Durchgang die Suchaufgabe systematisch so schnell und so genau wie möglich durchzuführen.
             \n Nach jedem Block können Sie eine kleine Pause machen.
             \n\n\n Zum Fortfahren bitte die Leertaste drücken.
         ''')        
