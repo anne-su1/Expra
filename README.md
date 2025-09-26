@@ -4,5 +4,5 @@ Um das Experiment auszuführen muss man
 * die "main.py" Datei aus dem Ordner "Replication_Hu" starten
 
 Hintergrundinformationen und der Aufbau des Experiments sind zu finden in 
-* der "Expra_Checkliste.pdf" Datei in dem Ordner "documents"
+* der "Expra_Checkliste Final.pdf" Datei in dem Ordner "documents"
 
