@@ -44,7 +44,7 @@ class E3:
                                        color=self.color,
                                        wrapWidth= 1.8)
         text_stim_e3.setText(
-            '''Start Block 3
+            '''Start Block ◯
             \n\n Zum Starten bitte die Leertaste drücken.
         ''')
         text_stim_e3.draw()
@@ -125,7 +125,7 @@ class E3:
 
         # Ende von Experiment 3
         text_stim_e3.setText(
-            '''Sie haben Block 3 geschafft!''')
+            '''Sie haben den Block geschafft!''')
         text_stim_e3.draw()
         self.win.flip()
         core.wait(3)

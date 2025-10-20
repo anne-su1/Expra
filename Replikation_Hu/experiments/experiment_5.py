@@ -46,7 +46,7 @@ class E5:
                                        color=self.color,
                                        wrapWidth= 1.8)
         text_stim_e5.setText(
-            '''Start Block 5
+            '''Start Block △
             \n\n Zum Starten bitte die Leertaste drücken.
         ''')
         text_stim_e5.draw()
@@ -132,7 +132,7 @@ class E5:
 
         # Ende von Experiment 5
         text_stim_e5.setText(
-                '''Sie haben Block 5 geschafft!''')
+                '''Sie haben den Block geschafft!''')
         text_stim_e5.draw()
         self.win.flip()
         core.wait(3)

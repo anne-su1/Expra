@@ -46,7 +46,7 @@ class E6:
                                        color=self.color,
                                        wrapWidth= 1.8)
         text_stim_e6.setText(
-            '''Start Block 6
+            '''Start Block ◯
             \n\n Zum Starten bitte die Leertaste drücken.
         ''')
         text_stim_e6.draw()
@@ -132,7 +132,7 @@ class E6:
 
         # Ende von Experiment 6
         text_stim_e6.setText(
-                '''Sie haben Block 6 geschafft!''')
+                '''Sie haben den Block geschafft!''')
         text_stim_e6.draw()
         self.win.flip()
         core.wait(3)

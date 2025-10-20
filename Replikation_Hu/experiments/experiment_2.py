@@ -44,7 +44,7 @@ class E2:
                                        color=self.color,
                                        wrapWidth= 1.8)
         text_stim_e2.setText(
-            '''Start Block 2
+            '''Start Block △
             \n\n Zum Starten bitte die Leertaste drücken.
         ''')
         text_stim_e2.draw()
@@ -125,7 +125,7 @@ class E2:
 
         # Ende von Experiment 2
         text_stim_e2.setText(
-                '''Sie haben Block 2 geschafft!''')
+                '''Sie haben den Block geschafft!''')
         text_stim_e2.draw()
         self.win.flip()
         core.wait(3)

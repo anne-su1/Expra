@@ -46,7 +46,7 @@ class E4:
                                        color=self.color,
                                        wrapWidth= 1.8)
         text_stim_e4.setText(
-            '''Start Block 4
+            '''Start Block □
             \n\n Zum Starten bitte die Leertaste drücken.
         ''')
         text_stim_e4.draw()
@@ -132,7 +132,7 @@ class E4:
 
         # Ende von Experiment 4
         text_stim_e4.setText(
-                '''Sie haben Block 4 geschafft!''')
+                '''Sie haben den Block geschafft!''')
         text_stim_e4.draw()
         self.win.flip()
         core.wait(3)

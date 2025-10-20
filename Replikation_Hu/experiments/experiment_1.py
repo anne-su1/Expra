@@ -32,10 +32,10 @@ class E1:
     def start(self):
         text_stim_e1 = visual.TextStim(self.win,
                                        height=0.085,
-                                       color=self.color,
+                                       color= self.color,
                                        wrapWidth= 1.8)
         text_stim_e1.setText(
-            '''Start Block 1
+            '''Start Block □
             \n\n Zum Starten bitte die Leertaste drücken.
         ''')
         text_stim_e1.draw()
@@ -96,7 +96,7 @@ class E1:
 
         # Ende von Experiment 1
         text_stim_e1.setText(
-                '''Sie haben Block 1 geschafft!''')
+                '''Sie haben den Block geschafft!''')
         text_stim_e1.draw()
         self.win.flip()
         core.wait(3)
