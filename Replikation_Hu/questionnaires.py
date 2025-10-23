@@ -38,11 +38,11 @@ class Questionnaire:
     def fatigue_questionnaire_1(self):
         fat_quest_1 = gui.Dlg(title="fatigue questionnaire")
         fat_quest_1.addText("1 = niedrigstes Level an Erschöpfung, 5 = höchstes Level an Erschöpfung")
-        fat_quest_1.addField("Erschöpfungslevel nach Block 1", 
+        fat_quest_1.addField("Erschöpfungslevel nach Block ⍺", 
                             choices=["1", "2", "3", "4", "5"])
-        fat_quest_1.addField("Erschöpfungslevel nach Block 2", 
+        fat_quest_1.addField("Erschöpfungslevel nach Block β", 
                             choices=["1", "2", "3", "4", "5"])
-        fat_quest_1.addField("Erschöpfungslevel nach Block 3", 
+        fat_quest_1.addField("Erschöpfungslevel nach Block δ", 
                             choices=["1", "2", "3", "4", "5"])
         fat_quest_1.addField("Haben Sie die Zeitangaben bemerkt?", choices=["bemerkt und häufig nachgesehen", "bemerkt und manchmal nachgesehen", "nicht bemerkt"])
         fat_quest_1.show()
@@ -60,11 +60,11 @@ class Questionnaire:
     def fatigue_questionnaire_2(self):
         fat_quest_2 = gui.Dlg(title="fatigue questionnaire")
         fat_quest_2.addText("1 = niedrigstes Level an Erschöpfung, 5 = höchstes Level an Erschöpfung")
-        fat_quest_2.addField("Erschöpfungslevel nach Block 4",
+        fat_quest_2.addField("Erschöpfungslevel nach Block ϵ",
                             choices=["1", "2", "3", "4", "5"])
-        fat_quest_2.addField("Erschöpfungslevel nach Block 5",
+        fat_quest_2.addField("Erschöpfungslevel nach Block Ω",
                             choices=["1", "2", "3", "4", "5"])
-        fat_quest_2.addField("Erschöpfungslevel nach Block 6",
+        fat_quest_2.addField("Erschöpfungslevel nach Block 𝜃",
                             choices=["1", "2", "3", "4", "5"])
         fat_quest_2.addField("Haben Sie die Zeitangaben bemerkt?", choices=["bemerkt und häufig nachgesehen", "bemerkt und manchmal nachgesehen", "nicht bemerkt"])
         fat_quest_2.show()

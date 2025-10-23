@@ -46,7 +46,7 @@ class E6:
                                        color=self.color,
                                        wrapWidth= 1.8)
         text_stim_e6.setText(
-            '''Start Block ◯
+            '''Start Block 𝜃
             \n\n Zum Starten bitte die Leertaste drücken.
         ''')
         text_stim_e6.draw()
@@ -85,6 +85,7 @@ class E6:
 
             # Schleife wartet, bis Proband Leertaste drückt, um Eingabe zu tätigen
             while countdown.getTime() > 0:
+                event.clearEvents(eventType='keyboard')
                 keys = event.getKeys(keyList='space')
                 if keys:
                     trial_reaction_time = timer.getTime() - trial_start_time
@@ -120,9 +121,9 @@ class E6:
                 "trial": trial_counter,
                 "reaction_time": trial_reaction_time  if not math.isnan(trial_reaction_time) else self.mean_rt_minus_sd,
                 "max_time": self.mean_rt_minus_sd,
-                "E_amount_answer": E_amount_answer,
+                "E_amount_answer": int(E_amount_answer) if E_amount_answer is not None else "NA",
                 "E_counter": self.task.E_counter,
-                "is_corr": int(E_amount_answer == self.task.E_counter) if E_amount_answer is not None else 0,
+                "is_corr": int(E_amount_answer == self.task.E_counter) if E_amount_answer is not None else "NA",
                 "answer_in_time": int(trial_reaction_time <= self.mean_rt_minus_sd)
             }
             
@@ -132,14 +133,14 @@ class E6:
 
         # Ende von Experiment 6
         text_stim_e6.setText(
-                '''Sie haben den Block geschafft!''')
+                '''Sie haben den Block 𝜃 geschafft!''')
         text_stim_e6.draw()
         self.win.flip()
         core.wait(3)
 
         text_stim_e6.setText(
             '''Sie haben nun 2 min Pause.
-            \n Bitte notieren Sie auf dem beiliegenden Zettel Ihren Erschöpfungsgrad für Block 6!
+            \n Bitte notieren Sie auf dem beiliegenden Zettel Ihren Erschöpfungsgrad für Block 𝜃!
             \n\n Wenn Sie früher bereit sind fortzufahren, drücken Sie die Leertaste.'''
         )
         text_stim_e6.draw()

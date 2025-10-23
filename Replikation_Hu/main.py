@@ -92,12 +92,12 @@ def main():
     taskGrid = Task_grid(8, 16, random)
 
     # Erstellung aller Experimente und Übergeben von Infos
-    e1 = E1(taskGrid, 240, win, behav_data_1, sub_info, sub_folder_path)
-    e2 = E2(taskGrid, 240, win, behav_data_1, sub_info, sub_folder_path)
-    e3 = E3(taskGrid, 240, win, behav_data_1, sub_info, sub_folder_path)
-    e4 = E4(taskGrid, 240, win, behav_data_2, sub_info, sub_folder_path)
-    e5 = E5(taskGrid, 240, win, behav_data_2, sub_info, sub_folder_path)
-    e6 = E6(taskGrid, 240, win, behav_data_2, sub_info, sub_folder_path)
+    e1 = E1(taskGrid, 24, win, behav_data_1, sub_info, sub_folder_path)
+    e2 = E2(taskGrid, 24, win, behav_data_1, sub_info, sub_folder_path)
+    e3 = E3(taskGrid, 24, win, behav_data_1, sub_info, sub_folder_path)
+    e4 = E4(taskGrid, 24, win, behav_data_2, sub_info, sub_folder_path)
+    e5 = E5(taskGrid, 24, win, behav_data_2, sub_info, sub_folder_path)
+    e6 = E6(taskGrid, 24, win, behav_data_2, sub_info, sub_folder_path)
 
     # Dict welches der Gruppennr. 1-3 eine Sequenz der Experimente in den Phasen 1 und 2 zuordnet (Übernahme Hu et.al.)
     sequence_groups = { 
@@ -116,7 +116,7 @@ def main():
     instruction.instruction_for_phase_1()
 
     # einmalige Übungsaufgaben ohne Zeitangabe (3 Displays)
-    e1.practice()
+    #e1.practice()
 
     # Experimente werden in vorher ausgewählter Reihenfolge (nach Gruppe) durchgeführt
     for experiment in phase_1_sequence:
