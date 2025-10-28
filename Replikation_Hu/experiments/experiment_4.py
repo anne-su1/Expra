@@ -117,7 +117,7 @@ class E4:
             # Daten aus dem Trial werden gespeichert
             trial_data = {
                 **self.sub_info,
-                "block": 4,
+                "block": "low time pressure",
                 "trial": trial_counter,
                 "reaction_time": trial_reaction_time if not math.isnan(trial_reaction_time) else self.mean_rt_plus_sd,
                 "max_time": self.mean_rt_plus_sd,

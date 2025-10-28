@@ -84,7 +84,7 @@ class E1:
             # Daten aus dem Trial werden gespeichert
             trial_data = {
                 **self.sub_info,
-                "block": 1,
+                "block": "no timer",
                 "trial": trial_counter,
                 "reaction_time": "NA" if np.isnan(trial_reaction_time) else trial_reaction_time,
                 "E_amount_answer": int(E_amount_answer) if E_amount_answer is not None else "NA",
