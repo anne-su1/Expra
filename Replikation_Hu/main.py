@@ -130,9 +130,10 @@ def main():
 
     # ---- Phase 2 ------
     # Berechnen von individuellen Rektionszeiten für Phase 2
-    mean_rt = behav_data_1['reaction_time'].mean()
-    mean_rt_plus_sd = behav_data_1['reaction_time'].mean()+ behav_data_1['reaction_time'].std()
-    mean_rt_minus_sd = behav_data_1['reaction_time'].mean()- behav_data_1['reaction_time'].std()
+    reaction_time = pd.to_numeric(behav_data_1['reaction_time'], errors='coerce')
+    mean_rt = reaction_time.mean()
+    mean_rt_plus_sd = reaction_time.mean()+ reaction_time.std()
+    mean_rt_minus_sd = reaction_time.mean()- reaction_time.std()
 
     # Zuweisung ausgerechneter max. Reaktionszeiten an Experimente
     e4.mean_rt_plus_sd = mean_rt_plus_sd 

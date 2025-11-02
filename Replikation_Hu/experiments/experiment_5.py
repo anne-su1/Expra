@@ -84,8 +84,8 @@ class E5:
             trial_reaction_time = float("NaN")
 
             # Schleife wartet, bis Proband Leertaste drückt, um Eingabe zu tätigen
+            event.clearEvents(eventType='keyboard')
             while countdown.getTime() > 0:
-                event.clearEvents(eventType='keyboard')
                 keys = event.getKeys(keyList='space')
                 if keys:
                     trial_reaction_time = timer.getTime() - trial_start_time

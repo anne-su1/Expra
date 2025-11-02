@@ -62,8 +62,8 @@ class E1:
             trial_reaction_time = float("NaN")
 
             # Schleife wartet, bis Proband Leertaste drückt, um Eingabe zu tätigen
+            event.clearEvents(eventType='keyboard')
             while timer.getTime() < self.experiment_duration:
-                event.clearEvents(eventType='keyboard')
                 keys = event.getKeys(keyList='space')
                 if keys:
                     trial_reaction_time = timer.getTime() - trial_start_time
@@ -136,6 +136,7 @@ class E1:
             self.win.flip()
             
             # wartet auf Eingabe des Probanden, blendet dann das Display aus
+            event.clearEvents(eventType='keyboard')
             while True:
                 keys = event.getKeys(keyList='space')
                 if keys:
