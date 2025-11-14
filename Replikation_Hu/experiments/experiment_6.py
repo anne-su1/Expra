@@ -89,6 +89,7 @@ class E6:
                 keys = event.getKeys(keyList='space')
                 if keys:
                     trial_reaction_time = timer.getTime() - trial_start_time
+                    print(trial_reaction_time, timer.getTime(), trial_start_time)
                     break
 
                 self.task.draw(self.win)

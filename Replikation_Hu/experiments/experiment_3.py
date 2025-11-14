@@ -1,6 +1,7 @@
 from psychopy import core, visual, event, gui 
 import pandas as pd
 import numpy as np 
+import math
 
 # erstellte Klasse importieren
 from task_model.task_grid import Task_grid
@@ -84,7 +85,7 @@ class E3:
             while timer.getTime() > 0:
                 keys = event.getKeys(keyList='space')
                 if keys:
-                    trial_reaction_time = timer.getTime() - trial_start_time
+                    trial_reaction_time = trial_start_time - timer.getTime()
                     break
 
                 self.task.draw(self.win)
@@ -115,7 +116,7 @@ class E3:
                 **self.sub_info,
                 "block": "countdown timer",
                 "trial": trial_counter,
-                "reaction_time": "NA" if np.isnan(trial_reaction_time) else trial_reaction_time,
+                "reaction_time": "NA" if math.isnan(trial_reaction_time) else trial_reaction_time,
                 "E_amount_answer": int(E_amount_answer) if E_amount_answer is not None else "NA",
                 "E_counter": self.task.E_counter,
                 "is_corr": int(E_amount_answer == self.task.E_counter) if E_amount_answer is not None else "NA"
