@@ -74,7 +74,7 @@ class Instruction:
         text_stim_2 = visual.TextStim(self.win, height=0.085, color= self.color, wrapWidth= 1.8)                              
         text_stim_2.setText(
             '''In jedem Durchgang werden Sie einen Countdown-Timer sehen, der anzeigt in welcher Zeit Sie die Suchaufgabe bearbeiten müssen.
-            \n Wenn der Countdown abgelaufen ist verschwinden die Buchstaben. Geben Sie bitte trotzdem eine Anzahl ein.
+            \n Wenn der Countdown abgelaufen ist verschwinden die Buchstaben. Geben Sie bitte nur eine Anzahl ein wenn Sie sich sicher sind.
             \n\n Zum Starten des Experiments bitte die Leertaste drücken.
         ''')       
         text_stim_2.draw()                                             
