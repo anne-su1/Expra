@@ -22,7 +22,7 @@ def main():
         'sub_id' : [],                
         'age' : [],                
         'sex' : [],                 
-        'normal or corrected sight' : [],
+        'normal / corrected sight' : [],
         'handedness' : [],
         'block' : [],
         'trial' : [],
@@ -38,7 +38,7 @@ def main():
         'sub_id' : [],               
         'age' : [],                 
         'sex' : [],                 
-        'normal or corrected sight' : [],
+        'normal / corrected sight' : [],
         'handedness' : [],
         'block' : [],
         'trial' : [],
@@ -111,17 +111,16 @@ def main():
     phase_1_sequence =  sequence_groups[sub_group][0]
     phase_2_sequence = sequence_groups[sub_group][1]
 
-    # Übergabe der Sequenz der Phasen an das Questionnaire 
-    # Sub sieht Blockreihenfolge entsprechend Gruppennummer im Questionnaire
-    questionnaire.sequence_for_phase_1, questionnaire.sequence_for_phase_2 = phase_1_sequence, phase_2_sequence
-    
     # ---- Phase 1 -----
     # Instruktionen für Phase 1
     instruction.instruction_for_phase_1()
 
+    # einmalige Übungsaufgaben ohne Zeitangabe (3 Displays)
+    e1.practice()
+
     # Experimente werden in vorher ausgewählter Reihenfolge (nach Gruppe) durchgeführt
     for experiment in phase_1_sequence:
-        experiment.practice()
+        #experiment.practice()
         experiment.start()
 
     # ---- fatigue questionnare 1 ------
@@ -131,9 +130,10 @@ def main():
 
     # ---- Phase 2 ------
     # Berechnen von individuellen Rektionszeiten für Phase 2
-    mean_rt = behav_data_1['reaction_time'].mean()
-    mean_rt_plus_sd = behav_data_1['reaction_time'].mean()+ behav_data_1['reaction_time'].std()
-    mean_rt_minus_sd = behav_data_1['reaction_time'].mean()- behav_data_1['reaction_time'].std()
+    reaction_time = pd.to_numeric(behav_data_1['reaction_time'], errors='coerce')
+    mean_rt = reaction_time.mean()
+    mean_rt_plus_sd = reaction_time.mean()+ reaction_time.std()
+    mean_rt_minus_sd = reaction_time.mean()- reaction_time.std()
 
     # Zuweisung ausgerechneter max. Reaktionszeiten an Experimente
     e4.mean_rt_plus_sd = mean_rt_plus_sd 
@@ -145,7 +145,7 @@ def main():
     
     # Experimente werden in vorher ausgewählter Reihenfolge (nach Gruppe) durchgeführt
     for experiment in phase_2_sequence:
-        experiment.practice()
+        #experiment.practice()
         experiment.start()
 
     # ----- fatigue questionnare 2 ------

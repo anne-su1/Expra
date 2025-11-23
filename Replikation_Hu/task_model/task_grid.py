@@ -2,7 +2,7 @@ from random import Random
 from psychopy import visual
 from task_model.letter_cell import letter_cell
 
-# Bauplan für ein Grid ohne E´s und F´s (class)
+# Klasse für ein Grid für die Suchdisplays
 class Task_grid:
 
     max_E_count = 13
@@ -13,6 +13,7 @@ class Task_grid:
     E_counter : int
     random_seed: Random
 
+    # Erstellen des Grid ohne E's und F's
     def __init__(self, rows, cols, random_seed):
         self.rows = rows
         self.columns = cols
@@ -23,26 +24,29 @@ class Task_grid:
     # Generierung eines Displays mit E´s und F´s und zählt E´s
     def generate_experiment_task(self):
         angles = [0, 90, 180, 270]
-        max_E_for_task = self.random_seed.randint(0, self.max_E_count)
+        max_E_for_task = self.random_seed.randint(8, self.max_E_count) # randomisierter Integer zwischen 8 und 13
         self.E_counter = 0
 
-        positions = [(r, c) for r in range(self.rows) for c in range(self.columns)]
+        # Alle Positionen für E's und F's im Grid werden erzeugt und gemischt
+        positions = [(row, col) for row in range(self.rows) for col in range(self.columns)]
         self.random_seed.shuffle(positions)
 
+        # Rausnehmen der Positionen von "positions" an denen ein E stehen soll, bis max ANzahl an E's für Aufgabe erreicht ist
         E_positions = []
-        for r, c in positions:
+        for row, col in positions:
             if len(E_positions) >= max_E_for_task:
                 break
-            if self.is_E_valid(r, c, E_positions):
-                E_positions.append((r, c))
+            if self.is_E_valid(row, col, E_positions):
+                E_positions.append((row, col))
         self.E_counter = len(E_positions)
 
-        for r in range(self.rows):
-            for c in range(self.columns):
-                letter = "E" if (r, c) in E_positions else "F"
+        # Grid wird befüllt mit E's und F's, Buchstaben werden noch gedreht, gespiegelt
+        for row in range(self.rows):
+            for col in range(self.columns):
+                letter = "E" if (row, col) in E_positions else "F"
                 angle = self.random_seed.choice(angles)
                 isMirrored = self.random_seed.choices([True, False], weights=[50, 50])[0]
-                self.grid[r][c] = letter_cell(letter, angle, isMirrored)
+                self.grid[row][col] = letter_cell(letter, angle, isMirrored)
 
     # Überprüfung keine benachbarten E´s
     def is_E_valid(self, current_row, current_col, E_positions) -> bool:
@@ -53,12 +57,13 @@ class Task_grid:
             (current_row, current_col + 1)
         ]
 
-        for r, c in neighbors:
-            if (r, c) in E_positions:
+        for row, col in neighbors:
+            if (row, col) in E_positions:
                 return False
 
         return True
 
+    # Grid wird auf Window "gemalt"
     def draw(self, win: visual.Window):
         cell_width = 0.12
         cell_height = 0.12
@@ -68,6 +73,7 @@ class Task_grid:
 
         stimuli_grid = []
 
+        # Jede Zelle in Grid wird in Textstim umgewandelt
         for row in range(self.rows):
             for col in range(self.columns):
                 letter_data = self.grid[row][col]
