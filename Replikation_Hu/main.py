@@ -1,4 +1,4 @@
-from psychopy import visual, core
+from psychopy import visual, core 
 import pyglet
 import pandas as pd
 from random import Random
