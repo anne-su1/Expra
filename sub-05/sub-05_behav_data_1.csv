@@ -1,0 +1,22 @@
+  , sub_id, age, sex , normal / corrected sight, handedness, block          , trial, reaction_time     , E_amount_answer, E_counter, is_corr
+ 0,     05,  21, male, yes                     , right     , countdown timer,     1, 26.90214416666663 , 9              ,        10, 0
+ 1,     05,  21, male, yes                     , right     , countdown timer,     2, 36.48175683333329 , 13             ,        13, 1
+ 2,     05,  21, male, yes                     , right     , countdown timer,     3, 33.26440687499996 , 8              ,         8, 1
+ 3,     05,  21, male, yes                     , right     , countdown timer,     4, 32.56862437500001 , 9              ,         9, 1
+ 4,     05,  21, male, yes                     , right     , countdown timer,     5, 36.06649629166668 , 10             ,        10, 1
+ 5,     05,  21, male, yes                     , right     , countdown timer,     6, 31.55068891666656 , 11             ,        11, 1
+ 6,     05,  21, male, yes                     , right     , countdown timer,     7, NA                , 7              ,         9, 0
+ 7,     05,  21, male, yes                     , right     , no timer       ,     1, 26.338177958333404, 9              ,         9, 1
+ 8,     05,  21, male, yes                     , right     , no timer       ,     2, 32.76045808333345 , 12             ,        12, 1
+ 9,     05,  21, male, yes                     , right     , no timer       ,     3, 33.222537125000144, 9              ,        10, 0
+10,     05,  21, male, yes                     , right     , no timer       ,     4, 42.881635583333264, 11             ,        11, 1
+11,     05,  21, male, yes                     , right     , no timer       ,     5, 33.7174113333333  , 11             ,        11, 1
+12,     05,  21, male, yes                     , right     , no timer       ,     6, 30.138209249999818, 9              ,         9, 1
+13,     05,  21, male, yes                     , right     , no timer       ,     7, NA                , NA             ,        12, NA
+14,     05,  21, male, yes                     , right     , clock timer    ,     1, 31.22496225000009 , 11             ,        11, 1
+15,     05,  21, male, yes                     , right     , clock timer    ,     2, 33.13906850000012 , 10             ,        10, 1
+16,     05,  21, male, yes                     , right     , clock timer    ,     3, 33.63813791666689 , 10             ,        10, 1
+17,     05,  21, male, yes                     , right     , clock timer    ,     4, 37.94066799999996 , 12             ,        12, 1
+18,     05,  21, male, yes                     , right     , clock timer    ,     5, 34.688919541666564, 9              ,         9, 1
+19,     05,  21, male, yes                     , right     , clock timer    ,     6, 27.695937999999842, 10             ,        11, 0
+20,     05,  21, male, yes                     , right     , clock timer    ,     7, NA                , 11             ,        12, 0
