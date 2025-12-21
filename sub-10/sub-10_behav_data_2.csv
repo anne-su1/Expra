@@ -1,0 +1,22 @@
+,sub_id,age,sex,normal / corrected sight,handedness,block,trial,reaction_time,max_time,E_amount_answer,E_counter,is_corr,answer_in_time
+0,10,61,male,yes,right,medium time pressure,1,32.39035008333303,37.99508205989582,9,9,1,1
+1,10,61,male,yes,right,medium time pressure,2,37.99508205989582,37.99508205989582,12,13,0,0
+2,10,61,male,yes,right,medium time pressure,3,33.199640958333475,37.99508205989582,11,11,1,1
+3,10,61,male,yes,right,medium time pressure,4,37.99508205989582,37.99508205989582,12,12,1,0
+4,10,61,male,yes,right,medium time pressure,5,36.05594854166702,37.99508205989582,8,9,0,1
+5,10,61,male,yes,right,medium time pressure,6,35.440347458333235,37.99508205989582,10,11,0,1
+6,10,61,male,yes,right,medium time pressure,7,36.89837429166619,37.99508205989582,8,9,0,1
+7,10,61,male,yes,right,high time pressure,1,34.159357021631685,34.159357021631685,14,13,0,0
+8,10,61,male,yes,right,high time pressure,2,34.07835775000058,34.159357021631685,8,8,1,1
+9,10,61,male,yes,right,high time pressure,3,34.159357021631685,34.159357021631685,7,9,0,0
+10,10,61,male,yes,right,high time pressure,4,34.159357021631685,34.159357021631685,9,12,0,0
+11,10,61,male,yes,right,high time pressure,5,34.908109458333456,34.159357021631685,7,8,0,0
+12,10,61,male,yes,right,high time pressure,6,34.159357021631685,34.159357021631685,8,9,0,0
+13,10,61,male,yes,right,high time pressure,7,34.159357021631685,34.159357021631685,7,8,0,0
+14,10,61,male,yes,right,low time pressure,1,34.06369329166591,41.83080709815996,9,9,1,1
+15,10,61,male,yes,right,low time pressure,2,35.96676112499972,41.83080709815996,8,8,1,1
+16,10,61,male,yes,right,low time pressure,3,32.87453820833343,41.83080709815996,12,13,0,1
+17,10,61,male,yes,right,low time pressure,4,40.10862841666585,41.83080709815996,11,11,1,1
+18,10,61,male,yes,right,low time pressure,5,32.92051254166654,41.83080709815996,7,8,0,1
+19,10,61,male,yes,right,low time pressure,6,33.05071970833433,41.83080709815996,7,8,0,1
+20,10,61,male,yes,right,low time pressure,7,35.122971791666714,41.83080709815996,10,11,0,1
