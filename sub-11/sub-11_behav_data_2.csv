@@ -1,0 +1,44 @@
+  , sub_id, age, sex   , normal / corrected sight, handedness, block               , trial, reaction_time     , max_time          , E_amount_answer, E_counter, is_corr, answer_in_time
+ 0,     11,  21, female, yes                     , left      , low time pressure   ,     1, 15.087364750000006, 18.898133283088168,              12,        13,       0,              1
+ 1,     11,  21, female, yes                     , left      , low time pressure   ,     2, 14.184031083333366, 18.898133283088168,              11,        13,       0,              1
+ 2,     11,  21, female, yes                     , left      , low time pressure   ,     3, 17.46597537499997 , 18.898133283088168,               8,        10,       0,              1
+ 3,     11,  21, female, yes                     , left      , low time pressure   ,     4, 16.015967333333492, 18.898133283088168,              10,        12,       0,              1
+ 4,     11,  21, female, yes                     , left      , low time pressure   ,     5, 15.546556583333313, 18.898133283088168,               8,         8,       1,              1
+ 5,     11,  21, female, yes                     , left      , low time pressure   ,     6, 12.587843375000148, 18.898133283088168,               9,        12,       0,              1
+ 6,     11,  21, female, yes                     , left      , low time pressure   ,     7, 13.84060066666666 , 18.898133283088168,               6,         8,       0,              1
+ 7,     11,  21, female, yes                     , left      , low time pressure   ,     8, 14.684140666666735, 18.898133283088168,              11,        11,       1,              1
+ 8,     11,  21, female, yes                     , left      , low time pressure   ,     9, 14.664351458333385, 18.898133283088168,               5,         8,       0,              1
+ 9,     11,  21, female, yes                     , left      , low time pressure   ,    10, 18.898133283088168, 18.898133283088168,               9,        12,       0,              0
+10,     11,  21, female, yes                     , left      , low time pressure   ,    11, 15.266201874999979, 18.898133283088168,               8,        10,       0,              1
+11,     11,  21, female, yes                     , left      , low time pressure   ,    12, 18.821870624999974, 18.898133283088168,              11,        12,       0,              1
+12,     11,  21, female, yes                     , left      , low time pressure   ,    13, 15.084192791666283, 18.898133283088168,               6,         8,       0,              1
+13,     11,  21, female, yes                     , left      , low time pressure   ,    14, 16.125241624999944, 18.898133283088168,               8,        12,       0,              1
+14,     11,  21, female, yes                     , left      , medium time pressure,     1, 16.108670041666528, 16.558819348809518,              10,        13,       0,              1
+15,     11,  21, female, yes                     , left      , medium time pressure,     2, 13.620186500000045, 16.558819348809518,               7,         9,       0,              1
+16,     11,  21, female, yes                     , left      , medium time pressure,     3, 14.941963083333349, 16.558819348809518,              11,        13,       0,              1
+17,     11,  21, female, yes                     , left      , medium time pressure,     4, 13.35011141666655 , 16.558819348809518,               6,         9,       0,              1
+18,     11,  21, female, yes                     , left      , medium time pressure,     5, 15.094771833333198, 16.558819348809518,               6,         8,       0,              1
+19,     11,  21, female, yes                     , left      , medium time pressure,     6, 15.422776958333316, 16.558819348809518,               8,         9,       0,              1
+20,     11,  21, female, yes                     , left      , medium time pressure,     7, 15.196817666666675, 16.558819348809518,               6,         9,       0,              1
+21,     11,  21, female, yes                     , left      , medium time pressure,     8, 16.360144666666656, 16.558819348809518,               6,        11,       0,              1
+22,     11,  21, female, yes                     , left      , medium time pressure,     9, 16.104260166666563, 16.558819348809518,               9,        11,       0,              1
+23,     11,  21, female, yes                     , left      , medium time pressure,    10, 16.474719249999907, 16.558819348809518,               6,        10,       0,              1
+24,     11,  21, female, yes                     , left      , medium time pressure,    11, 14.641034791666698, 16.558819348809518,               7,        11,       0,              1
+25,     11,  21, female, yes                     , left      , medium time pressure,    12, 17.26456741666675 , 16.558819348809518,               9,        11,       0,              0
+26,     11,  21, female, yes                     , left      , medium time pressure,    13, 15.243298833333256, 16.558819348809518,               8,        12,       0,              1
+27,     11,  21, female, yes                     , left      , medium time pressure,    14, 15.255797708333148, 16.558819348809518,               7,        10,       0,              1
+28,     11,  21, female, yes                     , left      , high time pressure  ,     1, 14.507334333333574, 14.21950541453087 ,               7,         8,       0,              0
+29,     11,  21, female, yes                     , left      , high time pressure  ,     2, 11.64398899999992 , 14.21950541453087 ,               8,        13,       0,              1
+30,     11,  21, female, yes                     , left      , high time pressure  ,     3, 11.34907779166656 , 14.21950541453087 ,               9,        11,       0,              1
+31,     11,  21, female, yes                     , left      , high time pressure  ,     4, 14.005694708333522, 14.21950541453087 ,              10,        10,       1,              1
+32,     11,  21, female, yes                     , left      , high time pressure  ,     5, 14.21950541453087 , 14.21950541453087 ,              10,        12,       0,              0
+33,     11,  21, female, yes                     , left      , high time pressure  ,     6, 12.714269999999942, 14.21950541453087 ,               7,         8,       0,              1
+34,     11,  21, female, yes                     , left      , high time pressure  ,     7, 13.899114000000054, 14.21950541453087 ,               7,        10,       0,              1
+35,     11,  21, female, yes                     , left      , high time pressure  ,     8, 13.85335783333312 , 14.21950541453087 ,               9,        11,       0,              1
+36,     11,  21, female, yes                     , left      , high time pressure  ,     9, 13.114062250000188, 14.21950541453087 ,               9,         9,       1,              1
+37,     11,  21, female, yes                     , left      , high time pressure  ,    10, 13.31836949999979 , 14.21950541453087 ,               6,         9,       0,              1
+38,     11,  21, female, yes                     , left      , high time pressure  ,    11, 14.21950541453087 , 14.21950541453087 ,               7,         9,       0,              0
+39,     11,  21, female, yes                     , left      , high time pressure  ,    12, 14.21950541453087 , 14.21950541453087 ,               9,        11,       0,              0
+40,     11,  21, female, yes                     , left      , high time pressure  ,    13, 14.21950541453087 , 14.21950541453087 ,              10,        13,       0,              0
+41,     11,  21, female, yes                     , left      , high time pressure  ,    14, 15.101500375000342, 14.21950541453087 ,               6,        11,       0,              0
+42,     11,  21, female, yes                     , left      , high time pressure  ,    15, 14.21950541453087 , 14.21950541453087 ,               8,        11,       0,              0
