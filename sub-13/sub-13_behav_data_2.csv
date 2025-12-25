@@ -1,0 +1,24 @@
+,sub_id,age,sex,normal / corrected sight,handedness,block,trial,reaction_time,max_time,E_amount_answer,E_counter,is_corr,answer_in_time
+0,13,18,female,yes,right,medium time pressure,1,25.438214431159988,25.438214431159988,8,8,1,0
+1,13,18,female,yes,right,medium time pressure,2,25.438214431159988,25.438214431159988,9,10,0,0
+2,13,18,female,yes,right,medium time pressure,3,25.438214431159988,25.438214431159988,12,12,1,0
+3,13,18,female,yes,right,medium time pressure,4,25.438214431159988,25.438214431159988,8,8,1,0
+4,13,18,female,yes,right,medium time pressure,5,25.438214431159988,25.438214431159988,12,13,0,0
+5,13,18,female,yes,right,medium time pressure,6,25.438214431159988,25.438214431159988,8,9,0,0
+6,13,18,female,yes,right,high time pressure,1,22.0972710103488,22.0972710103488,10,10,1,0
+7,13,18,female,yes,right,high time pressure,2,22.0972710103488,22.0972710103488,12,12,1,0
+8,13,18,female,yes,right,high time pressure,3,22.0972710103488,22.0972710103488,9,9,1,0
+9,13,18,female,yes,right,high time pressure,4,22.0972710103488,22.0972710103488,13,13,1,0
+10,13,18,female,yes,right,high time pressure,5,22.0972710103488,22.0972710103488,8,8,1,0
+11,13,18,female,yes,right,high time pressure,6,22.0972710103488,22.0972710103488,10,10,1,0
+12,13,18,female,yes,right,high time pressure,7,22.0972710103488,22.0972710103488,9,9,1,0
+13,13,18,female,yes,right,high time pressure,8,22.0972710103488,22.0972710103488,8,8,1,0
+14,13,18,female,yes,right,high time pressure,9,22.0972710103488,22.0972710103488,11,11,1,0
+15,13,18,female,yes,right,low time pressure,1,28.779157851971178,28.779157851971178,9,9,1,0
+16,13,18,female,yes,right,low time pressure,2,28.779157851971178,28.779157851971178,9,9,1,0
+17,13,18,female,yes,right,low time pressure,3,28.779157851971178,28.779157851971178,11,12,0,0
+18,13,18,female,yes,right,low time pressure,4,28.779157851971178,28.779157851971178,9,9,1,0
+19,13,18,female,yes,right,low time pressure,5,28.779157851971178,28.779157851971178,8,9,0,0
+20,13,18,female,yes,right,low time pressure,6,28.779157851971178,28.779157851971178,9,9,1,0
+21,13,18,female,yes,right,low time pressure,7,28.779157851971178,28.779157851971178,11,11,1,0
+22,13,18,female,yes,right,low time pressure,8,28.779157851971178,28.779157851971178,11,11,1,0
