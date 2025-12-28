@@ -1,0 +1,21 @@
+,sub_id,age,sex,normal / corrected sight,handedness,block,trial,reaction_time,E_amount_answer,E_counter,is_corr
+0,20,73,male,yes,right,countdown timer,1,34.344332083303016,11,11,1
+1,20,73,male,yes,right,countdown timer,2,35.72054154163925,8,10,0
+2,20,73,male,yes,right,countdown timer,3,36.21252837497741,10,10,1
+3,20,73,male,yes,right,countdown timer,4,45.56895491661271,9,9,1
+4,20,73,male,yes,right,countdown timer,5,40.73026983329328,8,8,1
+5,20,73,male,yes,right,countdown timer,6,NA,0,11,0
+6,20,73,male,yes,right,no timer,1,34.432109291665256,8,8,1
+7,20,73,male,yes,right,no timer,2,31.990657999995165,12,12,1
+8,20,73,male,yes,right,no timer,3,37.60967479168903,12,12,1
+9,20,73,male,yes,right,no timer,4,33.8973700000206,10,10,1
+10,20,73,male,yes,right,no timer,5,35.28424066660227,9,10,0
+11,20,73,male,yes,right,no timer,6,39.46808545832755,9,9,1
+12,20,73,male,yes,right,no timer,7,NA,0,8,0
+13,20,73,male,yes,right,clock timer,1,30.038819583307486,10,11,0
+14,20,73,male,yes,right,clock timer,2,37.137154541676864,10,11,0
+15,20,73,male,yes,right,clock timer,3,35.62079862499377,9,9,1
+16,20,73,male,yes,right,clock timer,4,35.24551383330254,10,10,1
+17,20,73,male,yes,right,clock timer,5,26.696920666610822,8,9,0
+18,20,73,male,yes,right,clock timer,6,34.71000645827735,8,8,1
+19,20,73,male,yes,right,clock timer,7,NA,0,11,0
