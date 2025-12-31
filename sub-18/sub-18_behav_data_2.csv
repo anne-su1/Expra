@@ -1,34 +1,34 @@
-,sub_id,age,sex,normal / corrected sight,handedness,block,trial,reaction_time,max_time,E_amount_answer,E_counter,is_corr,answer_in_time
-0,18,23,male,yes,right,high time pressure,1,20.745119250000016,21.56720381049066,9,10,0,1
-1,18,23,male,yes,right,high time pressure,2,19.709113291666654,21.56720381049066,9,11,0,1
-2,18,23,male,yes,right,high time pressure,3,21.275416375000077,21.56720381049066,10,10,1,1
-3,18,23,male,yes,right,high time pressure,4,21.46545095833335,21.56720381049066,9,10,0,1
-4,18,23,male,yes,right,high time pressure,5,21.650319750000108,21.56720381049066,13,13,1,0
-5,18,23,male,yes,right,high time pressure,6,20.672472499999913,21.56720381049066,9,9,1,1
-6,18,23,male,yes,right,high time pressure,7,21.199378791666504,21.56720381049066,10,10,1,1
-7,18,23,male,yes,right,high time pressure,8,19.914211666666233,21.56720381049066,11,12,0,1
-8,18,23,male,yes,right,high time pressure,9,19.97590470833302,21.56720381049066,8,9,0,1
-9,18,23,male,yes,right,high time pressure,10,22.289555583333367,21.56720381049066,8,8,1,0
-10,18,23,male,yes,right,high time pressure,11,20.536218499999904,21.56720381049066,11,11,1,1
-11,18,23,male,yes,right,low time pressure,1,22.202262958332994,28.803686112842627,13,13,1,1
-12,18,23,male,yes,right,low time pressure,2,21.126804291666758,28.803686112842627,8,9,0,1
-13,18,23,male,yes,right,low time pressure,3,22.237063708333153,28.803686112842627,12,12,1,1
-14,18,23,male,yes,right,low time pressure,4,22.946164333332945,28.803686112842627,11,11,1,1
-15,18,23,male,yes,right,low time pressure,5,21.767427208333174,28.803686112842627,12,13,0,1
-16,18,23,male,yes,right,low time pressure,6,20.028052083333023,28.803686112842627,9,9,1,1
-17,18,23,male,yes,right,low time pressure,7,20.68550308333306,28.803686112842627,11,11,1,1
-18,18,23,male,yes,right,low time pressure,8,18.328201791667198,28.803686112842627,9,9,1,1
-19,18,23,male,yes,right,low time pressure,9,19.367488458333355,28.803686112842627,7,8,0,1
-20,18,23,male,yes,right,low time pressure,10,19.729382291666752,28.803686112842627,11,11,1,1
-21,18,23,male,yes,right,low time pressure,11,20.494188541666517,28.803686112842627,11,11,1,1
-22,18,23,male,yes,right,medium time pressure,1,17.303811958333426,25.185444961666644,8,9,0,1
-23,18,23,male,yes,right,medium time pressure,2,20.247614666667232,25.185444961666644,11,11,1,1
-24,18,23,male,yes,right,medium time pressure,3,19.861591166666585,25.185444961666644,8,9,0,1
-25,18,23,male,yes,right,medium time pressure,4,18.77523462499994,25.185444961666644,7,10,0,1
-26,18,23,male,yes,right,medium time pressure,5,22.02471687499974,25.185444961666644,11,11,1,1
-27,18,23,male,yes,right,medium time pressure,6,21.176367291666338,25.185444961666644,13,13,1,1
-28,18,23,male,yes,right,medium time pressure,7,22.619658583333603,25.185444961666644,13,13,1,1
-29,18,23,male,yes,right,medium time pressure,8,21.038307958333462,25.185444961666644,10,10,1,1
-30,18,23,male,yes,right,medium time pressure,9,20.583305750000363,25.185444961666644,10,10,1,1
-31,18,23,male,yes,right,medium time pressure,10,22.92649712499997,25.185444961666644,10,10,1,1
-32,18,23,male,yes,right,medium time pressure,11,21.30094004166631,25.185444961666644,8,9,0,1
+  , sub_id, age, sex , normal / corrected sight, handedness, block               , trial, reaction_time     , max_time          , E_amount_answer, E_counter, is_corr, answer_in_time
+ 0,     18,  23, male, yes                     , right     , high time pressure  ,     1, 20.745119250000016, 21.56720381049066 ,               9,        10,       0,              1
+ 1,     18,  23, male, yes                     , right     , high time pressure  ,     2, 19.709113291666654, 21.56720381049066 ,               9,        11,       0,              1
+ 2,     18,  23, male, yes                     , right     , high time pressure  ,     3, 21.275416375000077, 21.56720381049066 ,              10,        10,       1,              1
+ 3,     18,  23, male, yes                     , right     , high time pressure  ,     4, 21.46545095833335 , 21.56720381049066 ,               9,        10,       0,              1
+ 4,     18,  23, male, yes                     , right     , high time pressure  ,     5, 21.650319750000108, 21.56720381049066 ,              13,        13,       1,              0
+ 5,     18,  23, male, yes                     , right     , high time pressure  ,     6, 20.672472499999913, 21.56720381049066 ,               9,         9,       1,              1
+ 6,     18,  23, male, yes                     , right     , high time pressure  ,     7, 21.199378791666504, 21.56720381049066 ,              10,        10,       1,              1
+ 7,     18,  23, male, yes                     , right     , high time pressure  ,     8, 19.914211666666233, 21.56720381049066 ,              11,        12,       0,              1
+ 8,     18,  23, male, yes                     , right     , high time pressure  ,     9, 19.97590470833302 , 21.56720381049066 ,               8,         9,       0,              1
+ 9,     18,  23, male, yes                     , right     , high time pressure  ,    10, 22.289555583333367, 21.56720381049066 ,               8,         8,       1,              0
+10,     18,  23, male, yes                     , right     , high time pressure  ,    11, 20.536218499999904, 21.56720381049066 ,              11,        11,       1,              1
+11,     18,  23, male, yes                     , right     , low time pressure   ,     1, 22.202262958332994, 28.803686112842627,              13,        13,       1,              1
+12,     18,  23, male, yes                     , right     , low time pressure   ,     2, 21.126804291666758, 28.803686112842627,               8,         9,       0,              1
+13,     18,  23, male, yes                     , right     , low time pressure   ,     3, 22.237063708333153, 28.803686112842627,              12,        12,       1,              1
+14,     18,  23, male, yes                     , right     , low time pressure   ,     4, 22.946164333332945, 28.803686112842627,              11,        11,       1,              1
+15,     18,  23, male, yes                     , right     , low time pressure   ,     5, 21.767427208333174, 28.803686112842627,              12,        13,       0,              1
+16,     18,  23, male, yes                     , right     , low time pressure   ,     6, 20.028052083333023, 28.803686112842627,               9,         9,       1,              1
+17,     18,  23, male, yes                     , right     , low time pressure   ,     7, 20.68550308333306 , 28.803686112842627,              11,        11,       1,              1
+18,     18,  23, male, yes                     , right     , low time pressure   ,     8, 18.328201791667198, 28.803686112842627,               9,         9,       1,              1
+19,     18,  23, male, yes                     , right     , low time pressure   ,     9, 19.367488458333355, 28.803686112842627,               7,         8,       0,              1
+20,     18,  23, male, yes                     , right     , low time pressure   ,    10, 19.729382291666752, 28.803686112842627,              11,        11,       1,              1
+21,     18,  23, male, yes                     , right     , low time pressure   ,    11, 20.494188541666517, 28.803686112842627,              11,        11,       1,              1
+22,     18,  23, male, yes                     , right     , medium time pressure,     1, 17.303811958333426, 25.185444961666644,               8,         9,       0,              1
+23,     18,  23, male, yes                     , right     , medium time pressure,     2, 20.247614666667232, 25.185444961666644,              11,        11,       1,              1
+24,     18,  23, male, yes                     , right     , medium time pressure,     3, 19.861591166666585, 25.185444961666644,               8,         9,       0,              1
+25,     18,  23, male, yes                     , right     , medium time pressure,     4, 18.77523462499994 , 25.185444961666644,               7,        10,       0,              1
+26,     18,  23, male, yes                     , right     , medium time pressure,     5, 22.02471687499974 , 25.185444961666644,              11,        11,       1,              1
+27,     18,  23, male, yes                     , right     , medium time pressure,     6, 21.176367291666338, 25.185444961666644,              13,        13,       1,              1
+28,     18,  23, male, yes                     , right     , medium time pressure,     7, 22.619658583333603, 25.185444961666644,              13,        13,       1,              1
+29,     18,  23, male, yes                     , right     , medium time pressure,     8, 21.038307958333462, 25.185444961666644,              10,        10,       1,              1
+30,     18,  23, male, yes                     , right     , medium time pressure,     9, 20.583305750000363, 25.185444961666644,              10,        10,       1,              1
+31,     18,  23, male, yes                     , right     , medium time pressure,    10, 22.92649712499997 , 25.185444961666644,              10,        10,       1,              1
+32,     18,  23, male, yes                     , right     , medium time pressure,    11, 21.30094004166631 , 25.185444961666644,               8,         9,       0,              1
