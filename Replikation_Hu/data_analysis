@@ -1,3 +1,79 @@
+#Vorbereitung der Umgebung
+
+#Pakete installieren
+#install.packages("glue")
+#install.packages("readr")
+#install.packages("afex")
+#install.packages("tidyverse")
+#install.packages("ggplot2")
+#install.packages("lme4")
+#install.packages("emmeans")
+#install.packages("dplyr")
+#install.packages("plotly")
+
 #Pakete laden
+library(glue)
+library(readr)
+library(afex)
+library(tidyverse)
+library(ggplot2)
+library(lme4)
+library(emmeans)
+library(dplyr)
+library(plotly)
+
 #Daten einlesen
+data_phase1 <- data.frame()
+data_phase2 <- data.frame()
+quest_data <- data.frame()
+
+for (i in 1:21) {
+
+  subj <- sprintf("%02d", i)
+
+  src_path <- getwd()
+
+  file_phase1 <- glue::glue("Expra/Replikation_Hu/subs/sub-{subj}/sub-{subj}_behav_data_1.csv")
+  file_phase2 <- glue::glue("Expra/Replikation_Hu/subs/sub-{subj}/sub-{subj}_behav_data_2.csv")
+  file_quest <- glue::glue("Expra/Replikation_Hu/subs/sub-{subj}/sub-{subj}_quest_data.csv")
+
+  sub_phase1 <- readr::read_csv(file.path(src_path, file_phase1))
+  sub_phase2 <- readr::read_csv(file.path(src_path, file_phase2))
+  sub_quest <- readr::read_csv(file.path(src_path, file_quest))
+
+  data_phase1 <- rbind(data_phase1, sub_phase1)
+  data_phase2 <- rbind(data_phase2, sub_phase2)
+  quest_data <- rbind(quest_data, sub_quest)
+
+}
+
 #Daten bereinigen
+data_phase1 <- data_phase1 %>%
+  filter(!is.na(reaction_time))
+
+meta_data <- data_phase1 %>%
+  select(sub_id,
+         handedness,
+         'normal / corrected sight',
+         sex,
+         age)%>%
+         distinct(sub_id, .keep_all = TRUE)
+
+data_phase1 <- data_phase1 %>%
+  select(
+    -handedness,
+    -`normal / corrected sight`,
+    -sex,
+    -age)
+
+data_phase2 <- data_phase2 %>%
+  select(
+    -handedness,
+    -`normal / corrected sight`,
+    -sex,
+    -age)
+
+#Dataframe abspeichern
+#Variablen berechnen
+#Plotten
+#Analysen
