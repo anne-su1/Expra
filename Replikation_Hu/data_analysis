@@ -21,6 +21,7 @@ library(emmeans)
 library(dplyr)
 library(plotly)
 library(ggbeeswarm)
+library(tidyr)
 
 #Daten einlesen
 data_phase1 <- data.frame()
@@ -73,6 +74,36 @@ data_phase2 <- data_phase2 %>%
          -sex,
          -age)
 
+quest_long <- quest_data %>%
+  select(-Q2Phase1, -Q2Phase2) %>%
+  pivot_longer(
+    cols = c(Q1E1, Q1E2, Q1E3, Q1E4, Q1E5, Q1E6),
+    names_to = "block",
+    values_to = "value"
+  )
+
+fat_phase1 <- quest_long %>%
+  filter(block %in% c("Q1E1", "Q1E2", "Q1E3")) %>%
+  mutate(
+    block = factor(
+      block,
+      levels = c("Q1E1", "Q1E2", "Q1E3")
+    ),
+    fatigue = value
+  ) %>%
+  select(sub_id, block, fatigue)
+
+fat_phase2 <- quest_long %>%
+  filter(block %in% c("Q1E4", "Q1E5", "Q1E6")) %>%
+  mutate(
+    block = factor(
+      block,
+      levels = c("Q1E4", "Q1E5", "Q1E6")
+    ),
+    fatigue = value
+  ) %>%
+  select(sub_id, block, fatigue)
+
 #Deskriptive Analyse
 xtabs(~ sex, data = meta_data)
 xtabs(~ handedness, data = meta_data)
@@ -81,7 +112,7 @@ xtabs(~ `normal / corrected sight`, data = meta_data)
 summary(meta_data$age)
 sd(meta_data$age)
 
-###Analysen
+###ANOVAs
 ##Phase 1
 
 #accuracy
@@ -111,6 +142,14 @@ rt_anov1 <- aov_ez(
     )
 )
 
+#fatique
+fat_anov1 <- aov_ez(
+  id     = "sub_id",
+  dv     = "fatigue",
+  within = c("block"),
+  data   = fat_phase1
+)
+
 ##Phase 2
 
 #accuracy
@@ -138,6 +177,17 @@ rt_anov2 <- aov_ez(
       reaction_time = median(reaction_time),
       .groups = "drop"
     )
+)
+
+#post-hoc test
+emmeans(rt_anov2, pairwise ~ block, adjust = "bonferroni")
+
+#fatique
+fat_anov2 <- aov_ez(
+  id     = "sub_id",
+  dv     = "fatigue",
+  within = c("block"),
+  data   = fat_phase2
 )
 
 ###Plotten
