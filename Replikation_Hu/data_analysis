@@ -1,5 +1,3 @@
-#Vorbereitung der Umgebung
-
 #Pakete installieren
 #install.packages("glue")
 #install.packages("readr")
@@ -10,6 +8,7 @@
 #install.packages("emmeans")
 #install.packages("dplyr")
 #install.packages("plotly")
+#install.packages("ggbeeswarm")
 
 #Pakete laden
 library(glue)
@@ -21,6 +20,7 @@ library(lme4)
 library(emmeans)
 library(dplyr)
 library(plotly)
+library(ggbeeswarm)
 
 #Daten einlesen
 data_phase1 <- data.frame()
@@ -54,26 +54,103 @@ data_phase1 <- data_phase1 %>%
 meta_data <- data_phase1 %>%
   select(sub_id,
          handedness,
-         'normal / corrected sight',
+         "normal / corrected sight",
          sex,
-         age)%>%
-         distinct(sub_id, .keep_all = TRUE)
+         age) %>%
+  distinct(sub_id, .keep_all = TRUE)
 
 data_phase1 <- data_phase1 %>%
   select(
-    -handedness,
-    -`normal / corrected sight`,
-    -sex,
-    -age)
+         -handedness,
+         -`normal / corrected sight`,
+         -sex,
+         -age)
 
 data_phase2 <- data_phase2 %>%
   select(
-    -handedness,
-    -`normal / corrected sight`,
-    -sex,
-    -age)
+         -handedness,
+         -`normal / corrected sight`,
+         -sex,
+         -age)
 
-#Dataframe abspeichern
-#Variablen berechnen
-#Plotten
-#Analysen
+#Deskriptive Analyse
+xtabs(~ sex, data = meta_data)
+xtabs(~ handedness, data = meta_data)
+xtabs(~ `normal / corrected sight`, data = meta_data)
+
+summary(meta_data$age)
+sd(meta_data$age)
+
+###Analysen
+##Phase 1
+
+#accuracy
+acc_anov1 <- aov_ez(
+  id = "sub_id",
+  dv = "accuracy",
+  within = c("block"),
+  data = data_phase1 %>% group_by(sub_id, block) %>% summarize(accuracy = mean(is_corr))
+)
+
+#RT
+#median oder mean?
+rt_anov1 <- aov_ez(
+  id     = "sub_id",
+  dv     = "reaction_time",
+  within = c("block"),
+  data   = data_phase1 %>%
+    group_by(sub_id, block) %>%
+    summarize(
+      reaction_time = median(reaction_time),
+      .groups = "drop"
+    )
+)
+
+##Phase 2
+
+#accuracy
+acc_anov2 <- aov_ez(
+  id = "sub_id",
+  dv = "accuracy",
+  within = c("block"),
+  data = data_phase2 %>% group_by(sub_id, block) %>% summarize(accuracy = mean(is_corr))
+)
+
+#RT
+#median oder mean?
+rt_anov2 <- aov_ez(
+  id     = "sub_id",
+  dv     = "reaction_time",
+  within = c("block"),
+  data   = data_phase2 %>%
+    group_by(sub_id, block) %>%
+    summarize(
+      reaction_time = median(reaction_time),
+      .groups = "drop"
+    )
+)
+
+###Plotten
+theme_set(theme_bw())
+
+##Phase 1
+
+#plot ohne Beachtung within design
+data_phase1 %>% ggplot(aes(x = block, y = is_corr)) + stat_summary()
+
+#plot accuracy
+data_phase1 %>%
+  group_by(sub_id, block) %>%
+  summarize(
+    accuracy = mean(is_corr),
+    n = n(),
+    .groups = "drop"
+  ) %>%
+  ggplot(aes(x = block, y = accuracy)) +
+  geom_point(aes(color = sub_id)) +
+  geom_line(aes(group = sub_id), alpha = 0.1) +
+  stat_summary()
+
+#afex plot accuracy
+afex_plot(acc_anov1,
+          x = "block")
