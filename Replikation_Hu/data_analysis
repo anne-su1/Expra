@@ -86,14 +86,19 @@ sd(meta_data$age)
 
 #accuracy
 acc_anov1 <- aov_ez(
-  id = "sub_id",
-  dv = "accuracy",
+  id     = "sub_id",
+  dv     = "accuracy",
   within = c("block"),
-  data = data_phase1 %>% group_by(sub_id, block) %>% summarize(accuracy = mean(is_corr))
+  data   = data_phase1 %>%
+    group_by(sub_id, block) %>%
+    summarize(
+      accuracy = mean(is_corr),
+      .groups = "drop"
+    )
 )
 
 #RT
-#median oder mean?
+#mean or median
 rt_anov1 <- aov_ez(
   id     = "sub_id",
   dv     = "reaction_time",
@@ -110,10 +115,15 @@ rt_anov1 <- aov_ez(
 
 #accuracy
 acc_anov2 <- aov_ez(
-  id = "sub_id",
-  dv = "accuracy",
+  id     = "sub_id",
+  dv     = "accuracy",
   within = c("block"),
-  data = data_phase2 %>% group_by(sub_id, block) %>% summarize(accuracy = mean(is_corr))
+  data   = data_phase2 %>%
+    group_by(sub_id, block) %>%
+    summarize(
+      accuracy = mean(is_corr),
+      .groups = "drop"
+    )
 )
 
 #RT
@@ -151,6 +161,9 @@ data_phase1 %>%
   geom_line(aes(group = sub_id), alpha = 0.1) +
   stat_summary()
 
-#afex plot accuracy
+#afex plots
+
 afex_plot(acc_anov1,
-          x = "block")
+    x = "block",
+    trace = "")+
+    scale_y_continuous(n.breaks = 10)
