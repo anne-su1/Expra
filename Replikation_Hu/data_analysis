@@ -193,10 +193,16 @@ fat_anov2 <- aov_ez(
 ###Plotten
 theme_set(theme_bw())
 
-##Phase 1
-
 #plot ohne Beachtung within design
 data_phase1 %>% ggplot(aes(x = block, y = is_corr)) + stat_summary()
+
+#afex plots
+afex_plot(acc_anov1,
+    x = "block",
+    trace = "")+
+    scale_y_continuous(n.breaks = 10)
+
+##Phase 1
 
 #plot accuracy
 data_phase1 %>%
@@ -211,9 +217,86 @@ data_phase1 %>%
   geom_line(aes(group = sub_id), alpha = 0.1) +
   stat_summary()
 
-#afex plots
+#plot rt
+data_phase1 %>%
+  group_by(sub_id, block) %>%
+  summarize(
+    reactiontime = median(reaction_time),
+    n = n(),
+    .groups = "drop"
+  ) %>%
+  ggplot(aes(x = block, y = reactiontime)) +
+  geom_point(aes(color = sub_id)) +
+  geom_line(aes(group = sub_id), alpha = 0.1) +
+  stat_summary()
 
-afex_plot(acc_anov1,
-    x = "block",
-    trace = "")+
-    scale_y_continuous(n.breaks = 10)
+#plot fatique
+fat_phase1 %>%
+  ggplot(aes(x = block, y = fatigue, group = sub_id, color = sub_id)) +
+  geom_point() +
+  geom_line(alpha = 0.1) +
+  stat_summary(
+    aes(group = 1),
+    fun.data = mean_se,
+    geom = "errorbar",
+    width = 0.2,
+    color = "black"
+  ) +
+  stat_summary(
+    aes(group = 1),
+    fun = mean,
+    geom = "point",
+    size = 3,
+    color = "black"
+  )
+
+##Phase 2
+
+#plot accuracy
+data_phase2 %>%
+  group_by(sub_id, block) %>%
+  summarize(
+    accuracy = mean(is_corr),
+    n = n(),
+    .groups = "drop"
+  ) %>%
+  ggplot(aes(x = block, y = accuracy)) +
+  geom_point(aes(color = sub_id)) +
+  geom_line(aes(group = sub_id), alpha = 0.1) +
+  stat_summary()
+
+#plot rt
+data_phase2 %>%
+  mutate(
+    block = factor(block, levels = c("low time pressure", "medium time pressure", "high time pressure"))
+  ) %>%
+  group_by(sub_id, block) %>%
+  summarize(
+    reactiontime = median(reaction_time),
+    n = n(),
+    .groups = "drop"
+  ) %>%
+  ggplot(aes(x = block, y = reactiontime)) +
+  geom_point(aes(color = sub_id)) +
+  geom_line(aes(group = sub_id), alpha = 0.1) +
+  stat_summary()
+
+#plot fatique
+fat_phase2 %>%
+  ggplot(aes(x = block, y = fatigue, group = sub_id, color = sub_id)) +
+  geom_point() +
+  geom_line(alpha = 0.1) +
+  stat_summary(
+    aes(group = 1),
+    fun.data = mean_se,
+    geom = "errorbar",
+    width = 0,
+    color = "black"
+  ) +
+  stat_summary(
+    aes(group = 1),
+    fun = mean,
+    geom = "point",
+    size = 3,
+    color = "black"
+  )
