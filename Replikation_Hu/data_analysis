@@ -190,7 +190,7 @@ fat_anov2 <- aov_ez(
   data   = fat_phase2
 )
 
-###Plotten
+###PLOTS
 theme_set(theme_bw())
 
 #plot ohne Beachtung within design
@@ -239,7 +239,7 @@ fat_phase1 %>%
     aes(group = 1),
     fun.data = mean_se,
     geom = "errorbar",
-    width = 0.2,
+    width = 0,
     color = "black"
   ) +
   stat_summary(
@@ -254,6 +254,9 @@ fat_phase1 %>%
 
 #plot accuracy
 data_phase2 %>%
+  mutate(
+    block = factor(block, levels = c("low time pressure", "medium time pressure", "high time pressure"))
+  ) %>%
   group_by(sub_id, block) %>%
   summarize(
     accuracy = mean(is_corr),
