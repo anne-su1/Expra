@@ -104,6 +104,20 @@ fat_phase2 <- quest_long %>%
   ) %>%
   select(sub_id, block, fatigue)
 
+acc_phase1 <- data_phase1 %>%
+  group_by(sub_id, block) %>%
+  summarize(
+    accuracy = mean(is_corr),
+    .groups = "drop"
+  )
+
+acc_phase2 <- data_phase2 %>%
+  group_by(sub_id, block) %>%
+  summarize(
+    accuracy = mean(is_corr),
+    .groups = "drop"
+  )
+
 #Deskriptive Analyse
 xtabs(~ sex, data = meta_data)
 xtabs(~ handedness, data = meta_data)
@@ -129,7 +143,16 @@ acc_anov1 <- aov_ez(
 )
 
 #RT
-#mean or median
+#Test auf Normalverteilung
+ggplot(data_phase1, aes(reaction_time)) +
+  geom_density() +
+  labs(
+    x = "reaction time",
+    y = "density"
+  )+
+  theme(aspect.ratio = 0.6)
+
+#median weil rechtsschiefe Verteilung
 rt_anov1 <- aov_ez(
   id     = "sub_id",
   dv     = "reaction_time",
@@ -166,7 +189,17 @@ acc_anov2 <- aov_ez(
 )
 
 #RT
-#median oder mean?
+#Test auf Normalverteilung
+ggplot(data_phase2, aes(reaction_time)) +
+  geom_density() +
+  labs(
+    x = "reaction time",
+    y = "density"
+  )+
+  theme(aspect.ratio = 0.6)
+
+#median weil rechtsschiefe Verteilung
+
 rt_anov2 <- aov_ez(
   id     = "sub_id",
   dv     = "reaction_time",
@@ -190,16 +223,137 @@ fat_anov2 <- aov_ez(
   data   = fat_phase2
 )
 
+##Kumulative Wahrscheinlichkeitsdichte 
+
+#RT Phase 1+2
+ggplot(data_phase1, aes(reaction_time, colour = block)) +
+  stat_ecdf(size = 0.8) +
+  stat_ecdf(
+    data = data_phase2,
+    aes(reaction_time, colour = block),
+    linetype = "dashed",
+    size = 0.8
+  ) +
+  scale_colour_manual(
+    limits = c("no timer","clock timer","countdown timer","low time pressure", "medium time pressure", "high time pressure"),
+    values = c(
+      "no timer" ="#66C2A5",
+      "clock timer" = "#E69F00",
+      "countdown timer" = "#56B4E9",
+      "low time pressure"    = "#0072B2",
+      "medium time pressure" = "#D55E00",
+      "high time pressure"   = "#00441B"
+    )
+  ) +
+  theme(aspect.ratio = 0.6) +
+  labs(
+    x = "reaction time",
+    y = "cumulative probability"
+  )
+
+#RT Phase 1
+ggplot(data_phase1, aes(reaction_time, colour = block)) +
+  stat_ecdf(size = 0.8) +
+  scale_colour_manual(
+    limits = c("no timer","clock timer","countdown timer"),
+    values = c(
+      "no timer" ="#66C2A5",
+      "clock timer" = "#D55E00",
+      "countdown timer" = "#0072B2"
+    )
+  ) +
+  theme(aspect.ratio = 0.6) +
+  labs(
+    x = "reaction time",
+    y = "cumulative probability"
+  )
+
+#RT Phase 2
+ggplot(data_phase2, aes(reaction_time, colour = block)) +
+  stat_ecdf(size = 0.8) +
+  scale_colour_manual(
+    limits = c("low time pressure", "medium time pressure", "high time pressure"),
+    values = c(
+      "low time pressure" = "#66C2A5",
+      "medium time pressure" = "#D55E00",
+      "high time pressure" = "#0072B2"
+    )
+  ) +
+  theme(aspect.ratio = 0.6) +
+  labs(
+    x = "reaction time",
+    y = "cumulative probability"
+  )
+
+#accuracy Phase 1+2
+ggplot(acc_phase1, aes(accuracy, colour = block)) +
+  stat_ecdf(size = 0.8) +
+  stat_ecdf(
+    data = acc_phase2,
+    aes(accuracy, colour = block),
+    linetype = "dashed",
+    size = 0.8
+  ) +
+  scale_colour_manual(
+    limits = c("no timer","clock timer","countdown timer","low time pressure", "medium time pressure", "high time pressure"),
+    values = c(
+      "no timer" ="#66C2A5",
+      "clock timer" = "#E69F00",
+      "countdown timer" = "#56B4E9",
+      "low time pressure"    = "#0072B2",
+      "medium time pressure" = "#D55E00",
+      "high time pressure"   = "#00441B"
+    )
+  ) +
+  theme(aspect.ratio = 0.6) +
+  labs(
+    x = "accuracy",
+    y = "cumulative probability",
+    linetype = "Phase"
+  )
+
+#accuracy Phase 1
+ggplot(acc_phase1, aes(accuracy, colour = block)) +
+  stat_ecdf(size = 1.1) +
+  scale_colour_manual(
+    limits = c("no timer", "clock timer", "countdown timer"),
+    values = c(
+      "no timer" ="#66C2A5",
+      "clock timer" = "#D55E00",
+      "countdown timer" = "#0072B2"
+    ))+
+  theme(aspect.ratio = 0.6) +
+  labs(
+    x = "accuracy",
+    y = "cumulative probability",
+    linetype = "Phase"
+  )
+
+#accuracy Phase 2
+ggplot(acc_phase2, aes(accuracy, colour = block)) +
+  stat_ecdf(size = 1.1) +
+  scale_colour_manual(
+    limits = c("low time pressure", "medium time pressure", "high time pressure"),
+    values = c(
+      "low time pressure" ="#66C2A5",
+      "medium time pressure" = "#D55E00",
+      "high time pressure" = "#0072B2"
+    ))+
+  theme(aspect.ratio = 0.6) +
+  labs(
+    x = "accuracy",
+    y = "cumulative probability",
+    linetype = "Phase"
+  )
+
 ###PLOTS
-theme_set(theme_bw())
 
 #plot ohne Beachtung within design
 data_phase1 %>% ggplot(aes(x = block, y = is_corr)) + stat_summary()
 
 #afex plots
 afex_plot(acc_anov1,
-    x = "block",
-    trace = "")+
+    x = "block")+
     scale_y_continuous(n.breaks = 10)
 
 ##Phase 1
@@ -215,7 +369,8 @@ data_phase1 %>%
   ggplot(aes(x = block, y = accuracy)) +
   geom_point(aes(color = sub_id)) +
   geom_line(aes(group = sub_id), alpha = 0.1) +
-  stat_summary()
+  stat_summary() +
+  theme(aspect.ratio = 0.6)
 
 #plot rt
 data_phase1 %>%
@@ -228,7 +383,53 @@ data_phase1 %>%
   ggplot(aes(x = block, y = reactiontime)) +
   geom_point(aes(color = sub_id)) +
   geom_line(aes(group = sub_id), alpha = 0.1) +
-  stat_summary()
+  stat_summary()+
+  theme(aspect.ratio = 0.6)
+
+#rt ohne sub_ids
+data_phase1 %>%
+  group_by(sub_id, block) %>%
+  summarize(
+    reactiontime = median(reaction_time),
+    n = n(),
+    .groups = "drop"
+  ) %>%
+  ggplot(aes(x = block, y = reactiontime)) +
+  stat_summary()+
+  theme(aspect.ratio = 0.6) +
+  scale_y_continuous(limits = c(25, 35))
+
+data_phase1 %>%
+  mutate(
+    block = factor(
+      block,
+      levels = c("no timer", "clock timer", "countdown timer")
+    )
+  ) %>%
+  group_by(sub_id, block) %>%
+  summarize(
+    reactiontime = median(reaction_time),
+    .groups = "drop"
+  ) %>%
+  ggplot(aes(x = block, y = reactiontime)) +
+  stat_summary(
+    fun.data = mean_se,
+    geom = "errorbar",
+    width = 0.08
+  ) +
+  stat_summary(
+    fun = mean,
+    geom = "point",
+    size = 2.5
+  ) +
+  coord_cartesian(ylim = c(25, 35)) +
+  theme(aspect.ratio = 0.6)+ 
+  theme(
+    axis.title.x = element_text(size = 14),
+    axis.title.y = element_text(size = 14),
+    axis.text.x  = element_text(size = 13),
+    axis.text.y  = element_text(size = 13)
+  )
 
 #plot fatique
 fat_phase1 %>%
