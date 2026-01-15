@@ -348,13 +348,11 @@ ggplot(acc_phase2, aes(accuracy, colour = block)) +
 
 ###PLOTS
 
-#plot ohne Beachtung within design
-data_phase1 %>% ggplot(aes(x = block, y = is_corr)) + stat_summary()
-
 #afex plots
 afex_plot(acc_anov1,
     x = "block")+
-    scale_y_continuous(n.breaks = 10)
+    scale_y_continuous(n.breaks = 5)+ 
+  theme(aspect.ratio = 0.6)
 
 ##Phase 1
 
@@ -387,18 +385,6 @@ data_phase1 %>%
   theme(aspect.ratio = 0.6)
 
 #rt ohne sub_ids
-data_phase1 %>%
-  group_by(sub_id, block) %>%
-  summarize(
-    reactiontime = median(reaction_time),
-    n = n(),
-    .groups = "drop"
-  ) %>%
-  ggplot(aes(x = block, y = reactiontime)) +
-  stat_summary()+
-  theme(aspect.ratio = 0.6) +
-  scale_y_continuous(limits = c(25, 35))
-
 data_phase1 %>%
   mutate(
     block = factor(
@@ -449,7 +435,8 @@ fat_phase1 %>%
     geom = "point",
     size = 3,
     color = "black"
-  )
+  )+ 
+  theme(aspect.ratio = 0.6)
 
 ##Phase 2
 
@@ -467,7 +454,8 @@ data_phase2 %>%
   ggplot(aes(x = block, y = accuracy)) +
   geom_point(aes(color = sub_id)) +
   geom_line(aes(group = sub_id), alpha = 0.1) +
-  stat_summary()
+  stat_summary()+ 
+  theme(aspect.ratio = 0.6)
 
 #plot rt
 data_phase2 %>%
@@ -483,7 +471,41 @@ data_phase2 %>%
   ggplot(aes(x = block, y = reactiontime)) +
   geom_point(aes(color = sub_id)) +
   geom_line(aes(group = sub_id), alpha = 0.1) +
-  stat_summary()
+  stat_summary()+ 
+  theme(aspect.ratio = 0.6)
+
+#rt ohne sub_ids
+data_phase2 %>%
+  mutate(
+    block = factor(
+      block,
+      levels = c("low time pressure", "medium time pressure", "high time pressure")
+    )
+  ) %>%
+  group_by(sub_id, block) %>%
+  summarize(
+    reactiontime = median(reaction_time),
+    .groups = "drop"
+  ) %>%
+  ggplot(aes(x = block, y = reactiontime)) +
+  stat_summary(
+    fun.data = mean_se,
+    geom = "errorbar",
+    width = 0.08
+  ) +
+  stat_summary(
+    fun = mean,
+    geom = "point",
+    size = 2.5
+  ) +
+  theme(aspect.ratio = 0.6)+
+  coord_cartesian(ylim = c(20, 35)) +
+  theme(
+    axis.title.x = element_text(size = 14),
+    axis.title.y = element_text(size = 14),
+    axis.text.x  = element_text(size = 13),
+    axis.text.y  = element_text(size = 13)
+  )
 
 #plot fatique
 fat_phase2 %>%
@@ -503,4 +525,86 @@ fat_phase2 %>%
     geom = "point",
     size = 3,
     color = "black"
+  )+ 
+  theme(aspect.ratio = 0.6)
+
+#Balkendiagramm accuracy
+plot_data <- bind_rows(
+  data_phase1 %>%
+    mutate(
+      phase = "P1",
+      block_combined = block
+    ),
+  data_phase2 %>%
+    mutate(
+      phase = "P2",
+      block_combined = block
+    )
+) %>%
+  mutate(
+    y_block = factor(
+      paste(phase, block_combined, sep = " – "),
+      levels = c(
+        "P1 – no timer",
+        "P1 – clock timer",
+        "P1 – countdown timer",
+        "P2 – low time pressure",
+        "P2 – medium time pressure",
+        "P2 – high time pressure"
+      )
+    )
   )
+acc_data <- plot_data %>%
+  group_by(sub_id, phase, y_block) %>%
+  summarise(
+    accuracy = mean(is_corr),
+    .groups = "drop"
+  )
+
+ggplot(acc_data, aes(x = y_block, y = accuracy)) +
+  stat_summary(
+    fun = mean,
+    geom = "bar",
+    fill = "grey80",
+    color = "black",
+    width = 0.6
+  ) +
+  geom_boxplot(
+    width = 0.25,
+    alpha = 0.6,
+    outlier.size = 1
+  ) +
+  labs(
+    x = "block",
+    y = "accuracy"
+  ) +
+  theme_minimal() +
+  theme(
+    axis.title.x = element_text(size = 14),
+    axis.title.y = element_text(size = 14),
+    axis.text.x  = element_text(size = 10),
+    axis.text.y  = element_text(size = 10)
+  ) + 
+  theme(aspect.ratio = 0.6)
+
+#dot plot rt
+ggplot(plot_data, aes(
+  x = trial,
+  y = reaction_time
+)) +
+  geom_point(alpha = 0.6) +
+  labs(
+    x = "trial",
+    y = "reaction time"
+  ) +
+  theme_minimal() +
+  theme(aspect.ratio = 0.6)
+
+ggplot(plot_data, aes(x = trial, y = reaction_time)) +
+  geom_jitter(
+    width = 0.15,
+    height = 0,
+    alpha = 0.6
+  ) +
+  theme_minimal()+
+  theme(aspect.ratio = 0.6)
