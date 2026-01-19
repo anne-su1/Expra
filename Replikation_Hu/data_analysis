@@ -24,9 +24,11 @@ library(ggbeeswarm)
 library(tidyr)
 
 #Daten einlesen
-data_phase1 <- data.frame()
-data_phase2 <- data.frame()
-quest_data <- data.frame()
+data_phase1 <- data.frame() #df phase 1
+data_phase2 <- data.frame() #df phase 2
+quest_data <- data.frame() #df fatique
+
+#alle daten der 21 sub ids in df speichern
 
 for (i in 1:21) {
 
@@ -34,9 +36,9 @@ for (i in 1:21) {
 
   src_path <- getwd()
 
-  file_phase1 <- glue::glue("Expra/Replikation_Hu/subs/sub-{subj}/sub-{subj}_behav_data_1.csv")
-  file_phase2 <- glue::glue("Expra/Replikation_Hu/subs/sub-{subj}/sub-{subj}_behav_data_2.csv")
-  file_quest <- glue::glue("Expra/Replikation_Hu/subs/sub-{subj}/sub-{subj}_quest_data.csv")
+  file_phase1 <- glue::glue("Replikation_Hu/subs/sub-{subj}/sub-{subj}_behav_data_1.csv")
+  file_phase2 <- glue::glue("Replikation_Hu/subs/sub-{subj}/sub-{subj}_behav_data_2.csv")
+  file_quest <- glue::glue("Replikation_Hu/subs/sub-{subj}/sub-{subj}_quest_data.csv")
 
   sub_phase1 <- readr::read_csv(file.path(src_path, file_phase1))
   sub_phase2 <- readr::read_csv(file.path(src_path, file_phase2))
@@ -49,9 +51,11 @@ for (i in 1:21) {
 }
 
 #Daten bereinigen
+#NAs aus Phase 1 löschen
 data_phase1 <- data_phase1 %>%
   filter(!is.na(reaction_time))
 
+#Meta daten in seperatem df speichern
 meta_data <- data_phase1 %>%
   select(sub_id,
          handedness,
@@ -60,6 +64,7 @@ meta_data <- data_phase1 %>%
          age) %>%
   distinct(sub_id, .keep_all = TRUE)
 
+#meta daten aus den df löschen
 data_phase1 <- data_phase1 %>%
   select(
          -handedness,
@@ -74,6 +79,7 @@ data_phase2 <- data_phase2 %>%
          -sex,
          -age)
 
+#df für fatique in long format speichern
 quest_long <- quest_data %>%
   select(-Q2Phase1, -Q2Phase2) %>%
   pivot_longer(
@@ -82,6 +88,7 @@ quest_long <- quest_data %>%
     values_to = "value"
   )
 
+#df für fatique in phase 1 und 2 speichern
 fat_phase1 <- quest_long %>%
   filter(block %in% c("Q1E1", "Q1E2", "Q1E3")) %>%
   mutate(
@@ -104,6 +111,7 @@ fat_phase2 <- quest_long %>%
   ) %>%
   select(sub_id, block, fatigue)
 
+#df für accuracy pro sub id und block 
 acc_phase1 <- data_phase1 %>%
   group_by(sub_id, block) %>%
   summarize(
@@ -199,7 +207,6 @@ ggplot(data_phase2, aes(reaction_time)) +
   theme(aspect.ratio = 0.6)
 
 #median weil rechtsschiefe Verteilung
-
 rt_anov2 <- aov_ez(
   id     = "sub_id",
   dv     = "reaction_time",
@@ -212,7 +219,7 @@ rt_anov2 <- aov_ez(
     )
 )
 
-#post-hoc test
+#post-hoc test weil anova signifikant
 emmeans(rt_anov2, pairwise ~ block, adjust = "bonferroni")
 
 #fatique
