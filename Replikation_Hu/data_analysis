@@ -615,3 +615,82 @@ ggplot(plot_data, aes(x = trial, y = reaction_time)) +
   ) +
   theme_minimal()+
   theme(aspect.ratio = 0.6)
+
+#abbildungen final
+
+data_phase2 %>%
+  mutate(
+    block = factor(
+      block,
+      levels = c("low time pressure", "medium time pressure", "high time pressure")
+    )
+  ) %>%
+  group_by(sub_id, block) %>%
+  summarize(
+    reactiontime = median(reaction_time),
+    .groups = "drop"
+  ) %>%
+  ggplot(aes(x = block, y = reactiontime)) +
+  stat_summary(
+    fun.data = mean_se,
+    geom = "errorbar",
+    width = 0.08
+  ) +
+  stat_summary(
+    fun = mean,
+    geom = "point",
+    size = 2.5
+  ) +
+  theme(aspect.ratio = 0.6)+
+  coord_cartesian(ylim = c(20, 35)) +
+  theme(
+    axis.title.x = element_text(size = 14),
+    axis.title.y = element_text(size = 14),
+    axis.text.x  = element_text(size = 13),
+    axis.text.y  = element_text(size = 13)
+  ) + 
+  labs(
+    x = "Block",
+    y = "Display-Bearbeitungszeit in s"
+  ) + 
+  scale_x_discrete(
+    labels = c("Geringer Zeitdruck", "Mittlerer Zeitdruck", "Hoher Zeitdruck*")
+  )
+  ggsave("plot.pdf", width = 15, height = 10, units = "cm", dpi = 300)
+  ggsave("plot1.pdf", dpi = 300)
+
+ggplot(data_phase1, aes(reaction_time, colour = block)) +
+  stat_ecdf(size = 0.8) +
+  stat_ecdf(
+    data = data_phase2,
+    aes(reaction_time, colour = block),
+    linetype = "dashed",
+    size = 0.8
+  ) +
+  scale_colour_manual(
+    limits = c("no timer","clock timer","countdown timer","low time pressure", "medium time pressure", "high time pressure"),
+    values = c(
+      "no timer" ="#66C2A5",
+      "clock timer" = "#E69F00",
+      "countdown timer" = "#56B4E9",
+      "low time pressure"    = "#0072B2",
+      "medium time pressure" = "#D55E00",
+      "high time pressure"   = "#00441B"
+    ),
+    labels = c(
+      "no timer" = "Keine Uhr",
+      "clock timer" = "Timer",
+      "countdown timer" = "Countdown",
+      "low time pressure" = "Geringer Zeitdruck",
+      "medium time pressure" = "Mittlerer Zeitdruck",
+      "high time pressure" = "Hoher Zeitdruck")
+  ) +
+  theme(aspect.ratio = 0.6) +
+  labs(
+    x = "Display-Bearbeitungszeit in s",
+    y = "Kumulative Wahrscheinlichkeit"
+  ) +
+  labs(colour = "Block")
+
+ggsave("plot2.pdf", width = 15, height = 10, units = "cm", dpi = 300)
+ggsave("plot3.pdf", dpi = 300)
